@@ -21,27 +21,31 @@
 	/*login frame with shade*/
 	.onco_form_inner_frame{
 	/*border: 1px solid lightgray;*/
-	height: 500px;
-	width: 550px;
+	height: auto;
+	width: 500px;
 	Text-align: center;
 	box-shadow: 0px 0px 8px lightgray;
+	padding: 50px 0 50px 0;
+	margin-left: auto;
+	margin-right: auto;
 	}
 	.btn_group {
 		border: 1px solid red; background-color: red; color: white;
-		width: 400px; height: 40px;
+		width: 405px; height: 40px;
 		margin-bottom: 20px;
 	}
 	.id_section {
 		text-align: left;
 		padding: 0 50px 0 50px;
-		margin: 0 0 20px 0;
+		margin: 0 0 50px 0;
 	}
 	.password_section{
 		text-align: left;
 		padding: 0 50px 0 50px;
 		margin: 0 0 50px 0;
 	}
-
+	.id_pw_frame{margin: 20px 0 0 0;}
+	
 </style>
 <script type="text/javascript">
 	function inputcheck(f){
@@ -85,7 +89,7 @@
 <div class="onco_form_outer_frame">
 	<div class="onco_form_inner_frame">
 		<div>
-			<br><br>
+			
 			<img src="../../img/small_logo.JPG"/>
 			<br><br>
 		</div>

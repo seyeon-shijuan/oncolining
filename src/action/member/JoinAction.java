@@ -21,13 +21,16 @@ public class JoinAction implements Action{
 		//1.파라미터정보를 Member 객체에 저장
 		//2.Member 객체의 정보를 db에 저장
 		Member mem = new Member();
-		mem.setId(request.getParameter("id"));
-		mem.setPass(request.getParameter("pass"));
-		mem.setName(request.getParameter("name"));
-		mem.setGender(Integer.parseInt(request.getParameter("gender")));
-		mem.setTel(request.getParameter("tel"));
-		mem.setEmail(request.getParameter("email"));
-		mem.setPicture(request.getParameter("picture"));
+		mem.setMem_id(request.getParameter("mem_id"));
+		mem.setMem_pass(request.getParameter("mem_pass"));
+		mem.setMem_name(request.getParameter("mem_name"));
+		mem.setMem_nickname(request.getParameter("mem_nickname"));
+		mem.setMem_birthdate(request.getParameter("mem_birthdate"));
+		mem.setMem_gender(request.getParameter("mem_gender"));
+		mem.setMem_diagnosis(request.getParameter("mem_diagnosis"));
+		mem.setMem_dgdate(request.getParameter("mem_dgdate"));
+		mem.setMem_stage(request.getParameter("mem_stage"));
+		mem.setMem_docs(request.getParameter("mem_docs"));
 	 //id pass name gender tell email picture
 		
 		String msg="회원가입 실패";

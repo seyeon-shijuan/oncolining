@@ -1,60 +1,98 @@
 package model;
 
+import java.util.Date;
+
 public class Member {
-	private String id;
-	private String pass;
-	private String name;
-	private int gender;
-	private String tel;
-	private String email;
-	private String picture;
+	private String mem_id;
+	private String mem_pass;
+	private String mem_name;
+	private String mem_nickname;
+	private Date mem_birthdate;
+	private String mem_gender;
+	private String mem_diagnosis;
+	private Date mem_dgdate;
+	private String mem_stage;
+	private String mem_docs;
+	private String mem_hospital;
+	
+	
 	//getter, setter, toString
-	public String getId() {
-		return id;
+	public String getMem_id() {
+		return mem_id;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setMem_id(String mem_id) {
+		this.mem_id = mem_id;
 	}
-	public String getPass() {
-		return pass;
+	public String getMem_pass() {
+		return mem_pass;
 	}
-	public void setPass(String pass) {
-		this.pass = pass;
+	public void setMem_pass(String mem_pass) {
+		this.mem_pass = mem_pass;
 	}
-	public String getName() {
-		return name;
+	public String getMem_name() {
+		return mem_name;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setMem_name(String mem_name) {
+		this.mem_name = mem_name;
 	}
-	public int getGender() {
-		return gender;
+	public String getMem_nickname() {
+		return mem_nickname;
 	}
-	public void setGender(int gender) {
-		this.gender = gender;
+	public void setMem_nickname(String mem_nickname) {
+		this.mem_nickname = mem_nickname;
 	}
-	public String getTel() {
-		return tel;
+	public Date getMem_birthdate() {
+		return mem_birthdate;
 	}
-	public void setTel(String tel) {
-		this.tel = tel;
+	public void setMem_birthdate(Date mem_birthdate) {
+		this.mem_birthdate = mem_birthdate;
 	}
-	public String getEmail() {
-		return email;
+	public String getMem_gender() {
+		return mem_gender;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setMem_gender(String mem_gender) {
+		this.mem_gender = mem_gender;
 	}
-	public String getPicture() {
-		return picture;
+	public String getMem_diagnosis() {
+		return mem_diagnosis;
 	}
-	public void setPicture(String picture) {
-		this.picture = picture;
+	public void setMem_diagnosis(String mem_diagnosis) {
+		this.mem_diagnosis = mem_diagnosis;
+	}
+	public Date getMem_dgdate() {
+		return mem_dgdate;
+	}
+	public void setMem_dgdate(Date mem_dgdate) {
+		this.mem_dgdate = mem_dgdate;
+	}
+	public String getMem_stage() {
+		return mem_stage;
+	}
+	public void setMem_stage(String mem_stage) {
+		this.mem_stage = mem_stage;
+	}
+	public String getMem_docs() {
+		return mem_docs;
+	}
+	public void setMem_docs(String mem_docs) {
+		this.mem_docs = mem_docs;
+	}
+	public String getMem_hospital() {
+		return mem_hospital;
+	}
+	public void setMem_hospital(String mem_hospital) {
+		this.mem_hospital = mem_hospital;
 	}
 	@Override
 	public String toString() {
-		return "Member [id=" + id + ", pass=" + pass + ", name=" + name + ", gender=" + gender + ", tel=" + tel
-				+ ", email=" + email + ", picture=" + picture + "]";
+		return "Member [mem_id=" + mem_id + ", mem_pass=" + mem_pass + ", mem_name=" + mem_name + ", mem_nickname="
+				+ mem_nickname + ", mem_birthdate=" + mem_birthdate + ", mem_gender=" + mem_gender + ", mem_diagnosis="
+				+ mem_diagnosis + ", mem_dgdate=" + mem_dgdate + ", mem_stage=" + mem_stage + ", mem_docs=" + mem_docs
+				+ ", mem_hospital=" + mem_hospital + "]";
 	}
+	
+	
+	
+	
 	
 }

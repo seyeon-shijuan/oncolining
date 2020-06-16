@@ -8,6 +8,7 @@
 <title><decorator:title/></title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <style type="text/css">
 .top{margin-top:20px;}
 ul{margin-top:20px; margin-left:30px;}
@@ -76,13 +77,6 @@ a:visited{color:black; text-decoration: none;}
        <decorator:body/>
     </div>
 
- 
- 
-
-
-
-
- 
   <!-- Pagination -->
   <!-- 
   <div class="w3-center w3-padding-32">
