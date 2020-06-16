@@ -42,3 +42,7 @@ div .container {
 
 .content{margin:30px 60px;}
 /*  black bar container --> */
+
+.btn_group { border: 1px solid skyblue; background-color: rgba(0,0,0,0); color: skyblue; padding: 5px;}
+
+

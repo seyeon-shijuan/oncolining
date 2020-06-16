@@ -17,6 +17,30 @@
 <link rel="stylesheet" href="../../css/main.css">
 <style type="text/css">
 	.style{display: inline;}
+	.onco_form_outer_frame{padding-top: 100px;}
+	/*login frame with shade*/
+	.onco_form_inner_frame{
+	/*border: 1px solid lightgray;*/
+	height: 500px;
+	width: 550px;
+	Text-align: center;
+	box-shadow: 0px 0px 8px lightgray;
+	}
+	.btn_group {
+		border: 1px solid red; background-color: red; color: white;
+		width: 400px; height: 40px;
+		margin-bottom: 20px;
+	}
+	.id_section {
+		text-align: left;
+		padding: 0 50px 0 50px;
+		margin: 0 0 20px 0;
+	}
+	.password_section{
+		text-align: left;
+		padding: 0 50px 0 50px;
+		margin: 0 0 50px 0;
+	}
 
 </style>
 <script type="text/javascript">
@@ -58,28 +82,39 @@
 </td></tr>
 </table>
 -->
-<div>
-	<div>
-		<img src="../img/small_logo.JPG"/>
-	</div>
-	<div class="id_section">
-	 	<label>
-	 		<span>ID</span>
-	 		<span>
-	 			<a href="win_open('idForm')">아이디가 기억나지 않아요.</a>
-	 		</span>
-	 	</label>
-	 
-	 	<input type="text" name="id">
-	</div>
-	<div class="password_section">
-	 	<label>
-	 		<span>password</span>
-	 		<span>
-	 			<a href="win_open('pwForm')">비밀번호가 기억나지 않아요.</a>
-	 		</span>
-	 	</label>
-	 	<input type="password" name="pass">
+<div class="onco_form_outer_frame">
+	<div class="onco_form_inner_frame">
+		<div>
+			<br><br>
+			<img src="../../img/small_logo.JPG"/>
+			<br><br>
+		</div>
+			<div class="id_pw_frame">
+			<div class="id_section">
+			 	<label>
+			 		<span>ID</span>
+			 		<span>
+			 			<a href="#" onclick="win_open('idForm')" style="color: gray; font-size:small;">아이디가 기억나지 않아요.</a>
+			 		</span>
+			 	</label>
+			 	<br>
+			 	<input type="text" name="id" style="width:400px; height:25px;">
+			</div>
+			<div class="password_section">
+			 	<label>
+			 		<span>Password</span>
+			 		<span>
+			 			<a href="#" onclick="win_open('pwForm')" style="color: gray; font-size:small;">비밀번호가 기억나지 않아요.</a>
+			 		</span>
+			 	</label>
+			 	<br>
+			 	<input type="password" name="pass" style="width:400px; height:25px;">
+			</div>
+		</div>
+		<input type="submit" value="login" class="btn_group">
+		<br>
+		<a href="joinForm.me"  style="color: gray; font-size:small;">회원 가입</a>
+
 	</div>
 </div>
 </form>

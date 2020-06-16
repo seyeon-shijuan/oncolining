@@ -52,9 +52,9 @@
 		<a href="logout.me">로그아웃</a>
 	</div>
 	<div>
-		<a href="info.me?id=${sessionScope.login }">회원정보보기</a>
+		<a href="info.me?id=${sessionScope.login}">회원정보보기</a>
 	</div>
-	<c:if test="${sessionScope.login == 'admin' }">
+	<c:if test="${sessionScope.login == 'admin'}">
 		<div>
 			<a href="list.me">회원목록 보기</a>
 		</div>

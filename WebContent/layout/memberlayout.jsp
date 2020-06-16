@@ -48,7 +48,7 @@ a:visited{color:black; text-decoration: none;}
    <ul>
     <li class="logo">
      <a href="../member/main.me">
-      <img src="../img/small_logo.JPG"/>
+      <img src="../../img/small_logo.JPG"/>
      </a>
     </li>
     <li class="menu"> 
@@ -98,12 +98,12 @@ a:visited{color:black; text-decoration: none;}
    -->
  
   <footer id="myFooter">
-    <div class="w3-container w3-theme-l2 w3-padding-32">
+    <div class="upperFooter">
       <h5 align="right">★</h5>
     </div>
 
-    <div class="w3-container w3-theme-l1">
-      <p align="right">빅데이터 플랫폼 개발자 양성 과정 2회차 모델2 프로그램 연습</p>
+    <div class="lowerFooter">
+      <p align="right">Copyright oncolining.ltd all rights reserved.</p>
     </div>
   </footer>
 
