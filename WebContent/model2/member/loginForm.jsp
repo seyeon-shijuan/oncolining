@@ -49,19 +49,19 @@
 </style>
 <script type="text/javascript">
 	function inputcheck(f){
-		if(f.id.value == ''){
+		if(f.mem_id.value == ''){
 			alert("아이디를 입력하세요")
 			f.id.focus();
 			return false;
 		}
-		if(f.id.value.length <4){
+		if(f.mem_id.value.length <4){
 			alert("아이디는 4자 이상 입력하세요")
 			f.id.focus();
 			return false;
 		}
-		if(f.pass.value == ''){
+		if(f.mem_pass.value == ''){
 			alert("비밀번호를 입력하세요")
-			f.pass.focus();
+			f.mem_pass.focus();
 			return false;
 		}
 		return true;
@@ -102,7 +102,7 @@
 			 		</span>
 			 	</label>
 			 	<br>
-			 	<input type="text" name="id" style="width:400px; height:25px;">
+			 	<input type="text" name="mem_id" style="width:400px; height:25px;">
 			</div>
 			<div class="password_section">
 			 	<label>
@@ -112,7 +112,7 @@
 			 		</span>
 			 	</label>
 			 	<br>
-			 	<input type="password" name="pass" style="width:400px; height:25px;">
+			 	<input type="password" name="mem_pass" style="width:400px; height:25px;">
 			</div>
 		</div>
 		<input type="submit" value="login" class="btn_group">

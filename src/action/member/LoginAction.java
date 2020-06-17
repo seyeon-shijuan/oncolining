@@ -14,15 +14,15 @@ public class LoginAction implements Action{
 		String msg = "아이디를 확인하세요";
 		String url="loginForm.me";
 		//1. 파라미터 저장
-		String id= request.getParameter("id");
-		String pass= request.getParameter("pass");
+		String mem_id= request.getParameter("mem_id");
+		String mem_pass= request.getParameter("mem_pass");
 		//2. db 정보 읽기
-		Member mem = new MemberDao().selectOne(id);
+		Member mem = new MemberDao().selectOne(mem_id);
 		//3. 아이디, 비밀번호 매칭
 		if(mem != null) {
-			if(pass.equals(mem.getPass())){
-				request.getSession().setAttribute("login",id); //로그인 할 때 세션에 id 저장, identifier는 login
-				msg = mem.getName() + "님이 로그인 했습니다.";
+			if(mem_pass.equals(mem.getMem_pass())){
+				request.getSession().setAttribute("login",mem_id); //로그인 할 때 세션에 id 저장, identifier는 login
+				msg = mem.getMem_name()+ "("+ mem.getMem_nickname() +")"+ "님이 로그인 했습니다.";
 				url = "main.me";
 			} else {
 				msg = "비밀번호가 틀렸습니다.";

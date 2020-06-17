@@ -1,0 +1,29 @@
+/*  /WebContent/css/blackbar.css   */
+.container {
+	position: relative;
+	width: 100%
+}
+
+.span4 {
+	background: #252525;
+	position: relative;
+	margin: 0;
+	padding: 0;
+	color: #fefefe;
+	height: 90px;
+	
+}
+
+.inner-heading {
+	color: #fff;
+	margin: 20px 0 0 0;
+}
+
+.titletext {
+	font-size: xx-large;
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 60px;
+}
+
+.content{margin:30px 60px;}

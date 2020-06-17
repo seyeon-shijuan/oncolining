@@ -1,16 +1,14 @@
 package model;
 
-import java.util.Date;
-
 public class Member {
 	private String mem_id;
 	private String mem_pass;
 	private String mem_name;
 	private String mem_nickname;
-	private Date mem_birthdate;
+	private String mem_dateofbirth;
 	private String mem_gender;
 	private String mem_diagnosis;
-	private Date mem_dgdate;
+	private String mem_dgdate;
 	private String mem_stage;
 	private String mem_docs;
 	private String mem_hospital;
@@ -41,11 +39,11 @@ public class Member {
 	public void setMem_nickname(String mem_nickname) {
 		this.mem_nickname = mem_nickname;
 	}
-	public Date getMem_birthdate() {
-		return mem_birthdate;
+	public String getMem_dateofbirth() {
+		return mem_dateofbirth;
 	}
-	public void setMem_birthdate(Date mem_birthdate) {
-		this.mem_birthdate = mem_birthdate;
+	public void setMem_dateofbirth(String mem_birthdate) {
+		this.mem_dateofbirth = mem_birthdate;
 	}
 	public String getMem_gender() {
 		return mem_gender;
@@ -59,10 +57,10 @@ public class Member {
 	public void setMem_diagnosis(String mem_diagnosis) {
 		this.mem_diagnosis = mem_diagnosis;
 	}
-	public Date getMem_dgdate() {
+	public String getMem_dgdate() {
 		return mem_dgdate;
 	}
-	public void setMem_dgdate(Date mem_dgdate) {
+	public void setMem_dgdate(String mem_dgdate) {
 		this.mem_dgdate = mem_dgdate;
 	}
 	public String getMem_stage() {
@@ -86,7 +84,7 @@ public class Member {
 	@Override
 	public String toString() {
 		return "Member [mem_id=" + mem_id + ", mem_pass=" + mem_pass + ", mem_name=" + mem_name + ", mem_nickname="
-				+ mem_nickname + ", mem_birthdate=" + mem_birthdate + ", mem_gender=" + mem_gender + ", mem_diagnosis="
+				+ mem_nickname + ", mem_dateofbirth=" + mem_dateofbirth + ", mem_gender=" + mem_gender + ", mem_diagnosis="
 				+ mem_diagnosis + ", mem_dgdate=" + mem_dgdate + ", mem_stage=" + mem_stage + ", mem_docs=" + mem_docs
 				+ ", mem_hospital=" + mem_hospital + "]";
 	}

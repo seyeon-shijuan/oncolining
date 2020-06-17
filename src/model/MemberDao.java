@@ -17,6 +17,8 @@ public class MemberDao {
 	//int result= dao.insert(mem); join.jsp와 MemberDado.java를 연동할 지문
 	private Class<MemberMapper> cls = MemberMapper.class;
 	private Map<String, Object> map = new HashMap<>();
+	
+	//회원가입시키는 함수
 	public int insert(Member mem) { // member가 data type, mem가 reference
 		SqlSession session = MyBatisConnection.getConnection();
 		try {
@@ -29,12 +31,12 @@ public class MemberDao {
 		}
 		return 0;
 	}
-	public Member selectOne(String id) {
+	public Member selectOne(String mem_id) {
 		SqlSession session = MyBatisConnection.getConnection();
-		String sql = "select * from member where id=?";
+		String sql = "select * from member where mem_id=?";
 		try {
 			map.clear();
-			map.put("id", id);
+			map.put("mem_id", mem_id);
 			List<Member> list = session.getMapper(cls).select(map);
 			return list.get(0);
 		} catch (Exception e) {
@@ -48,7 +50,7 @@ public class MemberDao {
 	//회원 목록 보기
 	public List<Member> list() {
 		SqlSession session = MyBatisConnection.getConnection();
-		String sql = "select * from member where id=?";
+		String sql = "select * from member where mem_id=?";
 		try {
 			List<Member> list = session.getMapper(cls).select(null);
 			return list;	
@@ -62,10 +64,10 @@ public class MemberDao {
 	}
 	
 	//아디 찾는 method
-	public String idSearch(String email, String tel) { 
+	public String idSearch(String mem_name, String mem_dateofbirth) { 
  		SqlSession session = MyBatisConnection.getConnection();
  		try { 
- 			return session.getMapper(cls).idSearch(email, tel);
+ 			return session.getMapper(cls).idSearch(mem_name, mem_dateofbirth);
  		} catch (Exception e) { 
  			e.printStackTrace(); 
  		} finally { 
@@ -75,10 +77,10 @@ public class MemberDao {
  	} 
  
 	//비번 찾는 method
- 	public String pwSearch(String id, String email, String tel) { 
+ 	public String pwSearch(String mem_id, String mem_name, String mem_dateofbirth) { 
  		SqlSession session = MyBatisConnection.getConnection();
  		try { 
- 			return session.getMapper(cls).pwSearch(id, email, tel) ;
+ 			return session.getMapper(cls).pwSearch(mem_id, mem_name, mem_dateofbirth) ;
  		} catch (Exception e) { 
  			e.printStackTrace(); 
  		} finally { 
@@ -90,8 +92,8 @@ public class MemberDao {
  	// 정보 바꾸는 method
 	public int update(Member m) {
 		SqlSession session = MyBatisConnection.getConnection();
-		String sql = "update member set name=?,"
-				+ " gender=?, email=?, tel=?, picture=? where id=?";
+		String sql = "update member set mem_name=?,"
+				+ " mem_nickname=?, mem_dateofbirth=?, mem_gender=?, mem_diagnosis=?, mem_dgdate=?, mem_stage=?, mem_docs=?, mem_hospital=? where mem_id=?";
 		// just FYI, sql is not used in this script
 		try {
 			return session.getMapper(cls).update(m);
@@ -104,11 +106,11 @@ public class MemberDao {
 	}
 	
 	// updatepass 비번오류시 나올것
-	public int updatePass(String id, String pass) {
+	public int updatePass(String mem_id, String mem_pass) {
 		SqlSession session = MyBatisConnection.getConnection();
-		String sql="update member set pass=? where id=?"; //FYI
+		String sql="update member set mem_pass=? where mem_id=?"; //FYI
 		try{
-			return session.getMapper(cls).updatePass(id, pass);
+			return session.getMapper(cls).updatePass(mem_id, mem_pass);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -121,7 +123,7 @@ public class MemberDao {
 	//delete 정보삭제
 	public int delete2(Member mem) {
 		SqlSession session = MyBatisConnection.getConnection();
-		  String sql = "DELETE FROM member WHERE id=? AND pass=?";//FYI
+		  String sql = "DELETE FROM member WHERE mem_id=? AND mem_pass=?";//FYI
 		  try {
 		   return session.getMapper(cls).delete2(mem);
 		  } catch (Exception e) {
@@ -132,10 +134,11 @@ public class MemberDao {
 		  return 0;
 		 }
 	
-	public int delete(String id) {
+	//탈퇴
+	public int delete(String mem_id) {
 		SqlSession session = MyBatisConnection.getConnection();
 		try {
-			return session.getMapper(cls).delete(id);
+			return session.getMapper(cls).delete(mem_id);
 		} catch (Exception e ) {
 			e.printStackTrace();
 		} finally {

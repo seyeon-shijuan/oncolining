@@ -39,16 +39,17 @@
 	
 
 	/*회원가입 테이블*/
-	input[type=text],input[type=password] { width: 300px; height: 35px;}
+	input[type=text],input[type=password] { width: 370px; height: 35px;}
 	td, tr, th { text-align: left; width : auto; padding: 15px;}
 	
 	
    table{
 		margin-left: auto;
 		margin-right: auto;
+		align-content: center;
 		
 	}
-	
+	.short_blank { width: 200px;}
 	/*!회원가입 테이블*/
 </style>
 <!--★★ 여기도 새로 생김 ★★-->
@@ -98,13 +99,13 @@ function win_upload(){
 			
 			<div>
 				<!-- 회원가입 항목 -->
-				<form action="join.me" name="f" method="post" class ="table_form">
+				<form action="join.me" name="f" method="post" enctype="multipart/form-data" class ="table_form">
 				<input type="hidden" name="mem_docs" value=""> <!-- 첨부파일 이름이 들어간다. --> 
 				<table boder = "1px solid gray" cellspacing = "1" class="onco_form_table" >
 				  <tr>
 				   <th>아이디 </th>
 				   <td> 
-				   <input type = "text" name="mem_id"/>
+				   <input type = "text" name="mem_id" class="short_blank"/><br>
 				   <input type = "button" value = "중복확인"/>
 				   </td>
 				  </tr>
@@ -122,17 +123,17 @@ function win_upload(){
 				  </tr>
 				  <tr>
 				   <th> 닉네임 </th>
-				   <td> <input type = "text" name="mem_nickname"/> </td>
+				   <td> <input type = "text" name="mem_nickname"/><br> <input type = "button" value = "중복확인"/></td>
 				  </tr>
 				  <tr>
 				   <th> 생년월일 </th>
-				   <td> <input type='date' name='mem_birthdate'/> </td>
+				   <td> <input type='date' name='mem_dateofbirth'/> </td>
 				  </tr>
 				  <tr>
 				   <th> 성별 </th>
 				   <td style="text-align: center"> 
-				    <input type = "radio" name = "mem_gender"/ checked > 남(M)
-				    <input type = "radio" name = "mem_gender"/ style="margin-left: 80px"> 여(F)
+				    <input type = "radio" name = "mem_gender" value="M"/ checked > 남(M)
+				    <input type = "radio" name = "mem_gender" value="F"/ style="margin-left: 80px"> 여(F)
 				   </td>
 				  </tr>
 				  <tr>
@@ -224,11 +225,12 @@ function win_upload(){
 				  </tr>
 				   -->
 				</table>
+				<input type="submit" value="회원가입" class="btn_group">
+				<br>
 				 </form>
 				<!-- /회원가입 항목 -->
 			</div>
-			<input type="submit" value="회원가입" class="btn_group">
-			<br>
+			
 			
 			
 		</div>

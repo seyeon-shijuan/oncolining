@@ -1,5 +1,5 @@
 /*  /WebContent/css/main.css   */
-table {	width : 80%; 	border-collapse: collapse; }
+table {	width : 50%; 	border-collapse: collapse; }
 th,td {
 	border-bottom : 1px solid #bcbcbc;
 	text-align: center;
@@ -12,37 +12,4 @@ caption {	color : #111111;  font-size: 20px;
 input[type=text],input[type=password],textarea {
 	/*width:100%;*/
 }
-
-
-/*  black bar container --> */
-div .container {
-	position: relative;
-}
-
- div .span4 {
-	background: #252525;
-	position: relative;
-	margin: 0;
-	padding: 0;
-	color: #fefefe;
-	height: 90px;
-}
-
-.inner-heading {
-	color: #fff;
-	margin: 20px 0 0 0;
-}
-
-.titletext {
-	font-size: xx-large;
-	display: inline-block;
-	vertical-align: middle;
-	margin-left: 60px;
-}
-
-.content{margin:30px 60px;}
-/*  black bar container --> */
-
-.btn_group { border: 1px solid skyblue; background-color: rgba(0,0,0,0); color: skyblue; padding: 5px;}
-
 

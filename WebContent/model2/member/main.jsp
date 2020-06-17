@@ -5,34 +5,22 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>about</title>
+<link rel="stylesheet" href="../../css/blackbar.css">
 <style>
-.container {
-	position: relative;
+.person_table {margin : auto; padding: 50px}
+.inner_frame {text-align: center;}
+   table{
+		margin-left: auto;
+		margin-right: auto;
+		align-content: center;
+		width: 800px;
+	}
+	th,td {
+
+	padding: 15px;
 }
 
-.span4 {
-	background: #252525;
-	position: relative;
-	margin: 0;
-	padding: 0;
-	color: #fefefe;
-	height: 90px;
-}
-
-.inner-heading {
-	color: #fff;
-	margin: 20px 0 0 0;
-}
-
-.titletext {
-	font-size: xx-large;
-	display: inline-block;
-	vertical-align: middle;
-	margin-left: 60px;
-}
-
-.content{margin:30px 60px;}
 </style>
 </head>
 <body>
@@ -46,19 +34,21 @@
 	</div>
 	<!-- /black bar container -->
 	
-	<div class="content">
-	<div>${sessionScope.login}로로그인 되었습니다.</div>
-	<div>
-		<a href="logout.me">로그아웃</a>
-	</div>
-	<div>
-		<a href="info.me?id=${sessionScope.login}">회원정보보기</a>
-	</div>
-	<c:if test="${sessionScope.login == 'admin'}">
+	<div class="inner_frame">
+		<div class="content">
+		<div>${sessionScope.login}님 환영합니다.</div>
 		<div>
-			<a href="list.me">회원목록 보기</a>
+			<a href="logout.me">로그아웃</a>
 		</div>
-	</c:if>
+		<div>
+			<a href="info.me?mem_id=${sessionScope.login}">회원정보보기</a>
+		</div>
+		<c:if test="${sessionScope.login == 'admin'}">
+			<div>
+				<a href="list.me">회원목록 보기</a>
+			</div>
+		</c:if>
+		</div>
 	</div>
 
 </body>
