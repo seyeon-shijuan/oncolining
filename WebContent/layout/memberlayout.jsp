@@ -8,9 +8,6 @@
 <title><decorator:title/></title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <style type="text/css">
 .top{margin-top:20px;}
@@ -56,27 +53,43 @@ a:visited{color:black; text-decoration: none;}
      </a>
     </li>
     <li class="menu"> 
-      <a href="../member/main.me" >소개</a>
+      <a href="../member/main.me" class="w3-bar-item w3-button w3-hide-small w3-hover-white">소개</a>
      </li>
      <li class="menu">
-      <a href="../member/info.me?id=${sessionScope.login}">회원정보</a>
+      <a href="../member/info.me?id=${sessionScope.login}" class="w3-bar-item w3-button w3-hide-small w3-hover-white">회원정보</a>
      </li>
      <li class="menu">
-      <a href="../member/list.me">회원관리</a>
+      <a href="../member/list.me" class="w3-bar-item w3-button w3-theme-l1">회원관리</a>
      </li>
      <li class="menu">
-      <a href="../board/list.do">게시판</a>
+      <a href="../board/list.do" class="w3-bar-item w3-button w3-theme-l1">게시판</a>
      </li>
     </ul> 
    </div>
  </div>
 
 <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible-->
+<br/>
+<br/>
 
  <div class="mainbody">
     <div class="body_content">
        <decorator:body/>
     </div>
+
+  <!-- Pagination -->
+  <!-- 
+  <div class="w3-center w3-padding-32">
+    <div class="w3-bar">
+      <a class="w3-button w3-black" href="#">1</a>
+      <a class="w3-button w3-hover-black" href="#">2</a>
+      <a class="w3-button w3-hover-black" href="#">3</a>
+      <a class="w3-button w3-hover-black" href="#">4</a>
+      <a class="w3-button w3-hover-black" href="#">5</a>
+      <a class="w3-button w3-hover-black" href="#">▶</a>
+    </div>
+  </div>
+   -->
  
   <footer id="myFooter">
     <div class="upperFooter">
@@ -88,9 +101,33 @@ a:visited{color:black; text-decoration: none;}
     </div>
   </footer>
 
-
-</div>
 <!-- END MAIN -->
+</div>
+
+<!--  <script>
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+    overlayBg.style.display = "none";
+  } else {
+    mySidebar.style.display = 'block';
+    overlayBg.style.display = "block";
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+  mySidebar.style.display = "none";
+  overlayBg.style.display = "none";
+}
+</script>-->
 
 </body>
 </html>
