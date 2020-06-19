@@ -27,38 +27,38 @@ public class DeleteAction extends UserLoginAction {
 	protected ActionForward doExecute(HttpServletRequest request, HttpServletResponse response) {
 
 
-		String pass = request.getParameter("pass"); 
+		String pass = request.getParameter("mem_pass"); 
 		String msg = null;
 		String url = null;
 
-		if(id.equals("admin")){ //탈퇴 대상이 되는 회원은 관리자 안됨
+		if(mem_id.equals("admin")){ //탈퇴 대상이 되는 회원은 관리자 안됨
 		 	msg="관리자는 탈퇴할 수 없습니다.";
 			url="list.me";
 		}else{
 			MemberDao dao = new MemberDao();
-			Member dbmem = dao.selectOne(id); //dB 정보 조회
-			if(login.equals("admin") || pass.equals(dbmem.getPass())){
-				if(dao.delete(id) >0) { //삭제 성공
+			Member dbmem = dao.selectOne(mem_id); //dB 정보 조회
+			if(login.equals("admin") || pass.equals(dbmem.getMem_pass())){
+				if(dao.delete(mem_id) >0) { //삭제 성공
 					if(login.equals("admin")){//관리자인 경우
-						msg=id+" 사용자를 강제 탈퇴시켰습니다.";
+						msg=mem_id+" 사용자를 강제 탈퇴시켰습니다.";
 						url="list.me";
 					} else {//일반 사용자의 경우
-						msg=id+ "님 회원탈퇴 되었습니다.";
+						msg=mem_id+ "님 회원탈퇴 되었습니다.";
 						url="loginForm.me";
 						request.getSession().invalidate();//로그아웃
 						//session.invalidate(); //로그아웃
 					}
 				} else{ // 삭제실패
-					msg=id+" 님의 탈퇴 중 오류가 발생했어요";
+					msg=mem_id+" 님의 탈퇴 중 오류가 발생했어요";
 					if(login.equals("admin")){//관리자인 경우
 						url="list.me";
 					} else { //일반사용자인 경우
-						url = "info.me?id="+id;
+						url = "info.me?mem_id="+mem_id;
 					}
 				}
 			}else{//일반사용자의 비밀번호가 틀린 경우
-				msg=id+" 님의 비밀번호가 틀렸습니당.";
-				url= "deleteForm.me?id="+id;
+				msg=mem_id+" 님의 비밀번호가 틀렸습니다.";
+				url= "deleteForm.me?mem_id="+mem_id;
 			}
 		}
 		request.setAttribute("msg", msg);

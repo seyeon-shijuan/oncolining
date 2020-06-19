@@ -1,7 +1,12 @@
 package action.member;
 
+import java.io.File;
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.oreilly.servlet.MultipartRequest;
 
 import action.ActionForward;
 import model.Member;
@@ -18,27 +23,45 @@ import model.MemberDao;
 public class UpdateAction extends UserLoginAction {
    @Override
    protected ActionForward doExecute(HttpServletRequest request, HttpServletResponse response) {
-      Member mem = new Member();
-      mem.setId(request.getParameter("id"));
-      mem.setPass(request.getParameter("pass"));
-      mem.setName(request.getParameter("name"));
-      mem.setGender(Integer.parseInt(request.getParameter("gender")));
-      mem.setTel(request.getParameter("tel"));
-      mem.setEmail(request.getParameter("email"));
-      mem.setPicture(request.getParameter("picture"));
+  
+	   Member mem = new Member();
+	   String msg = "기본 오류"; 
+	   String url = "updateForm.me?mem_id="+mem.getMem_id();
+	   String path = request.getServletContext().getRealPath("/") + "model2/member/file/";
+	  
+	  try {
+		  File f = new File(path);
+			if (!f.exists())
+				f.mkdirs();
+		  MultipartRequest multi = new MultipartRequest(request, path, 10 * 1024 * 1024, "euc-kr");   
+		  mem.setMem_id(multi.getParameter("mem_id"));
+	      mem.setMem_pass(multi.getParameter("mem_pass"));
+	      mem.setMem_name(multi.getParameter("mem_name"));
+	      mem.setMem_nickname(multi.getParameter("mem_nickname"));
+	      mem.setMem_nickname(multi.getParameter("mem_nickname"));
+	      mem.setMem_dateofbirth(multi.getParameter("mem_dateofbirth"));
+	      mem.setMem_gender(multi.getParameter("mem_gender"));
+	      mem.setMem_diagnosis(multi.getParameter("mem_diagnosis"));
+	      mem.setMem_dgdate(multi.getParameter("mem_dgdate"));
+	      mem.setMem_stage(multi.getParameter("mem_stage"));
+	      mem.setMem_docs(multi.getParameter("mem_docs"));
+	      mem.setMem_hospital(multi.getParameter("mem_hospital"));
+	      
+	      Member db = new MemberDao().selectOne(mem.getMem_id());
+	      
+	      
+	         int result = new MemberDao().update(mem);
+	         if(result > 0) {   //수정 성공인 경우
+	            return new ActionForward(true, "info.me?mem_id="+mem.getMem_id());
+	         }else {
+	            msg = "수정되지 않았습니다.";
+	            url = "updateForm.me?mem_id="+mem.getMem_id();
+	         }//까지
+	  } catch (IOException e) {
+			e.printStackTrace();
+		}
       
-      Member db = new MemberDao().selectOne(mem.getId());
-      String msg = "비밀번호 오류"; 
-      String url = "updateForm.me?id="+mem.getId();
-      if(mem.getPass().equals(db.getPass())){
-         int result = new MemberDao().update(mem);
-         if(result > 0) {   //수정 성공인 경우
-            return new ActionForward(true, "info.me?id="+mem.getId());
-         }else {
-            msg = "수정 실패";
-            url = "updateForm.me?id="+mem.getId();
-         }
-      }
+      
       request.setAttribute("msg", msg);
       request.setAttribute("url", url);
       return new ActionForward(false, "../alert.jsp");

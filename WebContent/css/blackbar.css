@@ -1,7 +1,7 @@
 /*  /WebContent/css/blackbar.css   */
 .container {
 	position: relative;
-	width: 100%
+	width: 100%;
 }
 
 .span4 {
@@ -14,16 +14,20 @@
 	
 }
 
+/*
 .inner-heading {
 	color: #fff;
-	margin: 20px 0 0 0;
+	margin: 30% 0 0 0;
 }
+*/
 
 .titletext {
-	font-size: xx-large;
+	font-size: medium;
+	font: gray;
 	display: inline-block;
-	vertical-align: middle;
-	margin-left: 60px;
+	/*vertical-align: bottom;*/
+	margin-top: 50px;
+	margin-left: 10%;
 }
 
-.content{margin:30px 60px;}
+/*.content{margin:30px 60px;}*/

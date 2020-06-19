@@ -33,7 +33,6 @@ public class MemberDao {
 	}
 	public Member selectOne(String mem_id) {
 		SqlSession session = MyBatisConnection.getConnection();
-		String sql = "select * from member where mem_id=?";
 		try {
 			map.clear();
 			map.put("mem_id", mem_id);

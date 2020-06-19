@@ -6,34 +6,12 @@
 <head>
 <meta charset="EUC-KR">
 <title>about</title>
-<link rel="stylesheet" href="../../css/blackbar.css">
 <style>
-.person_table {margin : auto; padding: 50px}
-.inner_frame {text-align: center;}
-   table{
-		margin-left: auto;
-		margin-right: auto;
-		align-content: center;
-		width: 800px;
-	}
-	th,td {
-
-	padding: 15px;
-}
 
 </style>
 </head>
 <body>
-	<!-- black bar container -->
-	<div class="container">
-		<div class="span4">
-			<div class="inner-heading">
-				<p class="titletext">about</p>
-			</div>
-		</div>
-	</div>
-	<!-- /black bar container -->
-	
+
 	<div class="inner_frame">
 		<div class="content">
 		<div>${sessionScope.login}님 환영합니다.</div>

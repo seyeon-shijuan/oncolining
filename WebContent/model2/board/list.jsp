@@ -59,16 +59,7 @@ caption {margin: 0 0 20px 0}
 </head>
 <body>
 
-	<!-- black bar container -->
-	<div class="container">
-		<div class="span4">
-			<div class="inner-heading">
-				<p class="titletext">forum</p>
-			</div>
-		</div>
-	</div>
-	<br>
-	<!-- /black bar container -->
+
 
 	
 	<table>

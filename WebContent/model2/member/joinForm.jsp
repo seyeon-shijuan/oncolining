@@ -5,52 +5,9 @@
 <head>
 <meta charset="EUC-KR">
 <title>회원가입</title>
-<!-- <link rel="stylesheet" href="../../css/main.css"> -->
+<link rel="stylesheet" href="../../css/joinform.css"> 
 <style type="text/css">
-	.style{display: inline;}
-	.onco_form_outer_frame{padding-top: 100px;}
-	/*login frame with shade*/
-	.onco_form_inner_frame{
-	/*border: 1px solid lightgray;*/
-	height: auto;
-	width: 600px;
-	Text-align: center;
-	box-shadow: 0px 0px 8px lightgray;
-	padding: 50px 0 50px 0;
-	margin-left: auto;
-	margin-right: auto;
-	}
-	.btn_group {
-		border: 1px solid red; background-color: red; color: white;
-		width: 405px; height: 40px;
-		margin: 20px 0 20px 0;
-	}
-	.id_section {
-		text-align: left;
-		padding: 0 50px 0 50px;
-		margin: 0 0 50px 0;
-	}
-	.password_section{
-		text-align: left;
-		padding: 0 50px 0 50px;
-		margin: 0 0 50px 0;
-	}
-	.id_pw_frame{margin: 20px 0 0 0;}
-	
 
-	/*회원가입 테이블*/
-	input[type=text],input[type=password] { width: 370px; height: 35px;}
-	td, tr, th { text-align: left; width : auto; padding: 15px;}
-	
-	
-   table{
-		margin-left: auto;
-		margin-right: auto;
-		align-content: center;
-		
-	}
-	.short_blank { width: 200px;}
-	/*!회원가입 테이블*/
 </style>
 <!--★★ 여기도 새로 생김 ★★-->
 <script type="text/javascript">
@@ -91,7 +48,7 @@ function win_upload(){
 			<div>
 				
 				<img src="../../img/small_logo.JPG"/>
-				<br>
+				<br><br>
 				임상회원 가입하기
 				<br><br>
 			</div>

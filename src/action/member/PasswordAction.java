@@ -31,13 +31,13 @@ public class PasswordAction extends UserLoginAction {
 		//mem=현재로그인한 계정의 정보
 		Member mem=dao.selectOne(login);
 		//pass= passwordform에서 입력한 현재비밀번호, chgpass=바꿀 비밀번호
-		String pass=request.getParameter("pass");
-		String chgpass=request.getParameter("chgpass");
+		String mem_pass=request.getParameter("mem_pass");
+		String mem_chgpass=request.getParameter("mem_chgpass");
 		
 		//입력한 현재비밀번호가 mem의 비밀번호와 같을 경우 update하고
 		//update가 성공했을 경우 closer=true로 바꾼다.
-		if(pass.equals(mem.getPass() )) {
-			if(dao.updatePass(login, chgpass)>0) {
+		if(mem_pass.equals(mem.getMem_pass() )) {
+			if(dao.updatePass(login, mem_chgpass)>0) {
 				msg="비번이 변경되었습니다.";
 				url="updateForm.me?id="+login;
 				closer=true;

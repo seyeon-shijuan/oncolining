@@ -19,9 +19,8 @@ id parameter 값과 login id가 다른 경우: 내정보 조회만 가능합니다. 메세지를 출력 
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>회원정보보기</title>
+<title>회원 정보</title>
 <link rel="stylesheet" href="../../css/main.css">
-<link rel="stylesheet" href="../../css/blackbar.css">
 <style>
 .person_table {margin : auto; padding: 50px}
 .inner_frame {text-align: center;}
@@ -53,19 +52,8 @@ function win_passchg() {
 </head>
 <body>
 
-	<!-- black bar container -->
-	<div class="container">
-		<div class="span4">
-			<div class="inner-heading">
-				<p class="titletext">my page</p>
-			</div>
-		</div>
-	</div>
-	<!-- /black bar container -->
-
 <div class="outer_frame">
 	<div class="inner_frame">
-		<br><br><br>
 		<span class="spantag">임상회원 정보</span>
 		<div class="person_table">
 			<table>

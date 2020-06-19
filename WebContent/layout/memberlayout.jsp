@@ -9,125 +9,122 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../css/blackbar.css">
+<link rel="stylesheet" href="../../css/sublayout.css">
 <style type="text/css">
-.top{margin-top:20px;}
-ul{margin-top:20px; margin-left:30px;}
-li{float:left; list-style:none; margin:0 25px;}
+.top{margin-top:1%;}
+ul{margin-top:2%; margin-left:2%;}
+li{
+/*float:left;*/
+display: inline; 
+list-style:none; margin:0 3%;
+}
 img{width:160px; hight:auto;}
-.logo{margin-right:620px;}
-.welcoming{font-size:small; text-align:right; margin-right:30px;}
+.logo{margin-right:20%;}
+.welcoming{font-size:small; text-align:right; margin-right:5%;}
+.welcoming_inner_a { margin : 1%;}
 li a:link{color:gray; text-decoration: none;}
 li a:visited{color:gray; text-decoration: none;}
 li a:hover{color:red;}
-.menu{margin-top:20px;}
+.tab{margin-top:20px;}
 a:link{color:black; text-decoration: none;}
 a:visited{color:black; text-decoration: none;}
-.body_content {}
+
+.tab_outer {margin-bottom: 2%; text-align: right;}
+.mainbody {margin : 2%; text-align: center; align-content: center;}
+.top{margin-bottom: 6%;}
+.logo_image {
+	position: relative;
+	left: 5%;
+	top: 5%;
+	width: 20%;
+        }
 
 </style>
-
 <script type="text/javascript" src="http://cdn.ckeditor.com/4.5.7/full/ckeditor.js"></script>
 <decorator:head/>
-
 <body>
  
 <!-- Navbar -->
-<div class="top">
-  <div class="welcoming">
-    <p class="welcoming">
-    	<c:if test="${empty sessionScope.login }">
-			<a href="${path}/model2/member/loginForm.me">로그인</a>
-			<a href="${path}/model2/member/joinForm.me">회원가입</a>
-		</c:if>
-		<c:if test="${!empty sessionScope.login}">
-			${sessionScope.login}님이 로그인 하셨습니다. &nbsp; &nbsp;
-			<a href="${path}/model2/member/logout.me">로그아웃</a>
-		</c:if>
-	</p>
+<div class="top"> <!-- margin-top:1%; -->
+	<!-- menu: mypage, login, register -->
+ 	<div class="menu_section"> 
+	  <p class="welcoming"> <!-- font-size:small; text-align:right; margin-right:5%;; -->
+	    	<c:if test="${empty sessionScope.login }">
+	    		 <!--  welcoming_inner_a -> margin : 1%; -->
+	    		<a href="${path}/model2/member/info.me?mem_id=${sessionScope.login}" class="welcoming_inner_a">mypage</a>
+				<a href="${path}/model2/member/joinForm.me" class="welcoming_inner_a">register</a>
+				<a href="${path}/model2/member/loginForm.me" class="welcoming_inner_a">login</a>
+			</c:if>
+			<c:if test="${!empty sessionScope.login}">
+				반갑습니다, ${sessionScope.login} 님 &nbsp;
+				<a href="${path}/model2/member/info.me?mem_id=${sessionScope.login}" class="welcoming_inner_a">mypage</a>
+				<a href="${path}/model2/member/logout.me">logout</a>
+			</c:if>
+		</p>
    </div>
-  <div class="logo-menu">
-   <ul>
-    <li class="logo">
-     <a href="../member/main.me">
-      <img src="../../img/small_logo.JPG"/>
-     </a>
-    </li>
-    <li class="menu"> 
-      <a href="../member/main.me" class="w3-bar-item w3-button w3-hide-small w3-hover-white">소개</a>
-     </li>
-     <li class="menu">
-      <a href="../member/info.me?id=${sessionScope.login}" class="w3-bar-item w3-button w3-hide-small w3-hover-white">회원정보</a>
-     </li>
-     <li class="menu">
-      <a href="../member/list.me" class="w3-bar-item w3-button w3-theme-l1">회원관리</a>
-     </li>
-     <li class="menu">
-      <a href="../board/list.do" class="w3-bar-item w3-button w3-theme-l1">게시판</a>
-     </li>
-    </ul> 
-   </div>
+   <!-- /menu: mypage, login, register -->
+   
+	   <!-- logo image and tab -->   
+	 	<div class="tab_outer">
+		   <ul>
+		    <li class="logo">
+		     <a href="../member/main.me">
+		      <img src="../../img/small_logo.JPG"/>
+		     </a>
+		    </li>
+		    
+		    <li class="tab"> 
+		      <a href="../member/main.me?id=${sessionScope.login}" class="123">소개</a>
+		     </li>
+		      <li class="tab">
+		      <a href="../clinicaltrial/ctdataForm.me" class="123">임상입력</a>
+		     </li>
+		     <li class="tab">
+		      <a href="../member/list.me?id=${sessionScope.login}" class="123" >회원관리</a>
+		     </li>
+		     <li class="tab">
+		      <a href="../board/list.do" class="123">게시판</a>
+		     </li>
+		    </ul> 
+	   </div>
+	   <!-- /logo image and tab -->
  </div>
+<!-- Navbar -->
 
-<!-- Main content: shift it to the right by 250 pixels when the sidebar is visible-->
-<br/>
-<br/>
 
+	<!-- black bar container -->
+	<div class="container">
+		<div class="span4">
+			<div class="inner-heading">
+				<p class="titletext">patients' clinical data platform</p>
+			</div>
+		</div>
+	</div>
+	<br>
+	<!-- /black bar container -->
+
+
+<!-- Main content-->
  <div class="mainbody">
     <div class="body_content">
        <decorator:body/>
     </div>
-
-  <!-- Pagination -->
-  <!-- 
-  <div class="w3-center w3-padding-32">
-    <div class="w3-bar">
-      <a class="w3-button w3-black" href="#">1</a>
-      <a class="w3-button w3-hover-black" href="#">2</a>
-      <a class="w3-button w3-hover-black" href="#">3</a>
-      <a class="w3-button w3-hover-black" href="#">4</a>
-      <a class="w3-button w3-hover-black" href="#">5</a>
-      <a class="w3-button w3-hover-black" href="#">▶</a>
-    </div>
-  </div>
-   -->
- 
-  <footer id="myFooter">
-    <div class="upperFooter">
-      <h5 align="right">★</h5>
-    </div>
-
-    <div class="lowerFooter">
-      <p align="right">Copyright oncolining.ltd all rights reserved.</p>
-    </div>
-  </footer>
-
-<!-- END MAIN -->
 </div>
+<!-- END MAIN -->
 
-<!--  <script>
-// Get the Sidebar
-var mySidebar = document.getElementById("mySidebar");
+<!-- 
 
-// Get the DIV with overlay effect
-var overlayBg = document.getElementById("myOverlay");
+	<footer id="myFooter">
+	    <div class="upperFooter">
+	      <h5 align="right">★</h5>
+	    </div>
+	
+	    <div class="lowerFooter">
+	      <p align="right">Copyright oncolining.ltd all rights reserved.</p>
+	    </div>
+	 </footer>
 
-// Toggle between showing and hiding the sidebar, and add overlay effect
-function w3_open() {
-  if (mySidebar.style.display === 'block') {
-    mySidebar.style.display = 'none';
-    overlayBg.style.display = "none";
-  } else {
-    mySidebar.style.display = 'block';
-    overlayBg.style.display = "block";
-  }
-}
-
-// Close the sidebar with the close button
-function w3_close() {
-  mySidebar.style.display = "none";
-  overlayBg.style.display = "none";
-}
-</script>-->
-
+ -->
 </body>
 </html>

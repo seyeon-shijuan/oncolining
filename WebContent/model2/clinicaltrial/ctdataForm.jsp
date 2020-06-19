@@ -1,89 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@page import="model.MemberDao"%>
+<%@page import="model.Member"%>
+<%@page import="model.Clinicaltrial"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>회원가입</title>
-<!-- <link rel="stylesheet" href="../../css/main.css"> -->
+<title>임상 시험 : 주간 복용 일지 입력</title>
+<link rel="stylesheet" href="../../css/joinform.css"> 
 <style type="text/css">
-	.style{display: inline;}
-	.onco_form_outer_frame{padding-top: 100px;}
-	/*login frame with shade*/
-	.onco_form_inner_frame{
-	/*border: 1px solid lightgray;*/
-	height: auto;
-	width: 600px;
-	Text-align: center;
-	box-shadow: 0px 0px 8px lightgray;
-	padding: 50px 0 50px 0;
-	margin-left: auto;
-	margin-right: auto;
-	}
-	.btn_group {
-		border: 1px solid red; background-color: red; color: white;
-		width: 405px; height: 40px;
-		margin: 20px 0 20px 0;
-	}
-	.id_section {
-		text-align: left;
-		padding: 0 50px 0 50px;
-		margin: 0 0 50px 0;
-	}
-	.password_section{
-		text-align: left;
-		padding: 0 50px 0 50px;
-		margin: 0 0 50px 0;
-	}
-	.id_pw_frame{margin: 20px 0 0 0;}
-	
 
-	/*회원가입 테이블*/
-	input[type=text],input[type=password] { width: 300px; height: 35px;}
-	td, tr, th { text-align: left; width : auto; padding: 15px;}
-	
-	
-   table{
-		margin-left: auto;
-		margin-right: auto;
-		
-	}
-	
-	/*!회원가입 테이블*/
 </style>
 <!--★★ 여기도 새로 생김 ★★-->
 <script type="text/javascript">
-function win_upload(){
-	var op = "width=500,height=150,left=50,top=150";
-	open("pictureForm.me","",op);
-	// open: pictureForm.me가 열림
-}
+
 </script>
 </head>
 <body>
-<%--
-<form action="join.me" name="f" method="post">
-	<!-- former -->
-	<input type="hidden" name="picture" value=""> <!-- with picture의 이미지 이름이 들어간다. --> 
-	<table><tr><td rowspan="4" valign="bottom">
-	<img src="" width="100" height="120" id="pic"><br> <!-- with picture.jsp -->
-	
-	<font size="1"><a href="javascript:win_upload()">사진등록</a></font>
-	<!-- ★★javascript:win_upload() 추가됨 for thumbnail.jsp ★★ -->
-	
-	</td><th>아이디</th><td><input type="text" name="id"></td></tr>
-	<tr><th>비밀번호</th><td><input type="password" name="pass"></td></tr>
-	<tr><th>이름</th><td><input type="text" name="name"></td></tr>
-	
-	<tr><th>성별</th><td>
-	<input type="radio" name="gender" value="1" checked>남
-	<input type="radio" name="gender" value="2" >여</td></tr>
-	<tr><th>전화번호</th><td colspan="2"><input type="text" name="tel"></td></tr>
-	<tr><th>이메일</th><td colspan="2"><input type="text" name="email"></td></tr>
-	<tr><td colspan="3"><input type="submit" value="회원가입"></td>
-	</table>
-	<!-- /former -->
-	 --%>
 	 
 	<div class="onco_form_outer_frame">
 		<div class="onco_form_inner_frame">
@@ -91,145 +28,136 @@ function win_upload(){
 				
 				<img src="../../img/small_logo.JPG"/>
 				<br>
-				임상회원 가입하기
+				주간 복용 일지 입력하기
 				<br><br>
 			</div>
 			
 			
 			<div>
 				<!-- 회원가입 항목 -->
-				<form action="join.me" name="f" method="post" class ="table_form">
-				<input type="hidden" name="mem_docs" value=""> <!-- 첨부파일 이름이 들어간다. --> 
-				<table boder = "1px solid gray" cellspacing = "1" class="onco_form_table" >
-				  <tr>
-				   <th>아이디 </th>
-				   <td> 
-				   <input type = "text" name="mem_id"/>
-				   <input type = "button" value = "중복확인"/>
-				   </td>
-				  </tr>
-				  <tr>
-				   <th> 비밀번호 </th>
-				   <td> <input type = "password" name="mem_pass"/> </td>
-				  </tr>
-				  <tr>
-				   <th> 비밀번호 확인 </th>
-				   <td> <input type = "password" name="mem_pass2"/>&nbsp;<br>*비밀번호를 다시 입력해주세요. </td>
-				  </tr>
-				  <tr>
-				   <th> 이름 </th>
-				   <td> <input type = "text" name="mem_name"/> </td>
-				  </tr>
+				<form action="ctdata.me" name="f" method="post" class ="table_form">
+				<input type="hidden" name="mem_id" value="${mem.mem_id}"> <!-- id가 foreign key라서 -->
+				<table class="onco_form_table" >
 				  <tr>
 				   <th> 닉네임 </th>
-				   <td> <input type = "text" name="mem_nickname"/> </td>
+				   <td> <input type = "text" name="mem_nickname" class="short_blank" readonly value="${mem.mem_nickname}"  style="background-color: #F6F6F6"/> </td>
 				  </tr>
 				  <tr>
-				   <th> 생년월일 </th>
-				   <td> <input type='date' name='mem_birthdate'/> </td>
+				   <th> 만 나이 </th>
+				   <td> <input type = "text" name="ct_age"/> </td>
 				  </tr>
 				  <tr>
 				   <th> 성별 </th>
-				   <td style="text-align: center"> 
-				    <input type = "radio" name = "mem_gender"/ checked > 남(M)
-				    <input type = "radio" name = "mem_gender"/ style="margin-left: 80px"> 여(F)
-				   </td>
+				   <td> <input type = "text" name="mem_gender" readonly value="${mem.mem_gender}"  style="background-color: #F6F6F6"/> </td>
 				  </tr>
 				  <tr>
 				   <th> 진단명 </th>
-				   <td> <input type = "text" name="mem_diagnosis"/> </td>
+				   <td> <input type = "text" name="mem_diagnosis" readonly value="${mem.mem_diagnosis}"  style="background-color: #F6F6F6"/> </td>
 				  </tr>
 				  <tr>
-				   <th> 진단일자 </th>
-				   <td> <input type='date' name='mem_dgdate'/> </td>
+				   <th> 종합 병기 </th>
+				   <td><input type = "text" name="mem_stage" readonly value="${mem.mem_stage}"  style="background-color: #F6F6F6"/>  </td>
 				  </tr>
 				  <tr>
-				   <th> 종합병기 </th>
+				   <th> 복용 주차</th>
+				   <td> <input type = "text" name="ct_week"/> </td>
+				  </tr>
+				  <tr>
+				   <th> 복용 약물<br>(복수 선택 가능)  </th>
 				   <td>
-				   	  <select name="mem_stage">
-					  <option value="1" selected="selected">1</option>
-					  <option value="2">2</option>
-					  <option value="3">3</option>
-					  <option value="4">4</option>
-					  <option value="말기">말기</option>
+				    <input type = "checkbox" name="ct_medicine"/> Albendazole
+				    <input type = "checkbox" name="ct_medicine" style="margin-left: 43px;"/> Fenbendazole
+				    <br/>
+				    <input type = "checkbox" name="ct_medicine"/> Mebendazole
+				    <input type = "checkbox" name="ct_medicine" style="margin-left: 35px;"/> Flubendazole
+				    <br/>
+				    <input type = "checkbox" name="ct_medicine"/> Pyrvinium
+				   </td>
+				  </tr>
+					<tr>
+				   <th> 용법 </th>
+				   <td>
+				   	  <select name="ct_frequency">
+					  <option value="7일 연속복용" selected="selected">7일 연속복용</option>
+					  <option value="4일 복용 - 3일 휴약">4일 복용 - 3일 휴약</option>
+					  <option value="3일 복용 - 4일 휴약">3일 복용 - 4일 휴약</option>
+					  <option value="기타">기타</option>
 					</select>
 				   </td>
 				  </tr>
 				  <tr>
-				   <th> 진단서 </th>
-				   <td> <input type="file" name="mem_docs"/> </td>
+				   <th> 기타용법</th>
+				   <td> <input type = "text" name="ct_otherfqc"/> </td>
 				  </tr>
 				   <tr>
-				   <th> 병원 </th>
-				   <td> <input type = "text" name="mem_hospital"/> </td>
+				   <tr>
+				   <th> 복용량</th>
+				   <td> <input type = "text" name="ct_dosage"/> </td>
+				  </tr>
+				   <tr>
+				   <th> 병행 치료<br>(복수 선택 가능)  </th>
+				   <td>
+				    <input type = "checkbox" name="ct_treatment"/> 없음
+				    <input type = "checkbox" name="ct_treatment" style="margin-left: 91px;"/> 면역치료요법
+				    <br/>
+				    <input type = "checkbox" name="ct_treatment"/> 항암화학요법
+				    <input type = "checkbox"  name="ct_treatment" style="margin-left: 36px;"/> 방사선치료
+				    <br/>
+				    <input type = "checkbox" name="ct_treatment"/> 호르몬요법
+				    <input type = "checkbox" name="ct_treatment"  style="margin-left: 50px;"/> 표적치료제
+				    <br/>
+				    <input type = "checkbox" name="ct_treatment"/> 기타요법
+				   </td>
+				  </tr>
+				  <tr>
+				   <th> 보충제</th>
+				   <td> <input type = "text" name="ct_suppliment"/> </td>
+				  </tr>
+				  <tr>
+				   <th> 체감 통증<br/>(복용 후) </th>
+				   <td>
+				   	  <select name="ct_pain">
+					  <option value="매우 악화됨" >매우 악화됨</option>
+					  <option value="악화됨" >악화됨</option>
+					  <option value="변화 없음" selected="selected">변화 없음</option>
+					  <option value="개선됨" >개선됨</option>
+					  <option value="매우 개선됨" >매우 개선됨</option>
+					</select>
+				   </td>
+				  </tr>
+				   <tr>
+				   <th> 기력·피로도<br/>(복용 후) </th>
+				   <td>
+				   	  <select name="ct_fatigue">
+					  <option value="매우 악화됨">매우 악화됨</option>
+					  <option value="악화됨">악화됨</option>
+					  <option value="변화 없음" selected="selected">변화 없음</option>
+					  <option value="개선됨">개선됨</option>
+					  <option value="매우 개선됨">매우 개선됨</option>
+					</select>
+				   </td>
+				  </tr>
+				  <tr>
+				   <th> 부작용·의심증상</th>
+				   <td> <input type = "text" name="ct_side_effect"/> </td>
+				  </tr>
+				  <tr>
+				   <th> 종양 크기 변화<br> (검사한 경우)</th>
+				   <td> <input type = "text" name="ct_tumor_size"/> </td>
+				  </tr>
+				 <tr>
+				   <th> 종양 수치 변화<br> (검사한 경우)</th>
+				   <td> <input type = "text" name="ct_blood_test"/> </td>
 				  </tr>
 				  
-				  <!-- 
-				  <tr>
-				   <td> 이메일 </td>
-				   <td>
-				    <input type = "text"/> @ <input type = "text"/> &nbsp;&nbsp; 
-				    <select>
-				     <option> 직접입력 </option>
-				     <option> naver.com </option>
-				     <option> daum.net </option>
-				     <option> nate.com </option>
-				    </select>
-				   </td>
-				  </tr>
-				  <tr>
-				   <td> 주소 </td>
-				   <td>
-				    <input type = "text"/>
-				    <input type = "button" value = "주소찾기"/>
-				   </td>
-				  </tr>
-				  <tr>
-				   <td> 상세주소 </td>
-				   <td>
-				    <input type = "text"/>
-				   </td>
-				  </tr>
-				  <tr>
-				   <td> 휴대폰 </td>
-				   <td> 
-				    <input type = "radio" name = "phone"/> SKT 
-				    <input type = "radio" name = "phone"/> KTF 
-				    <input type = "radio" name = "phone"/> LGU+
-				   <br/>
-				    <select>
-				     <option> 010 </option>
-				     <option> 011 </option>
-				     <option> 016 </option>
-				     <option> 018 </option>
-				    </select> 
-				    <input type = "text" size = "6"/> - <input type = "text" size = "6"/>
-				   </td>
-				  </tr>
-				  <tr>
-				   <td> 관심  </td>
-				   <td>
-				    <input type = "checkbox"/> 수입차
-				    <input type = "checkbox"/> 국산차
-				    <input type = "checkbox"/> SUV
-				    <input type = "checkbox"/> 경차
-				    <input type = "checkbox"/> LPG
-				   </td>
-				  </tr>
-				  <tr>
-				   <td> 자기소개  </td>
-				   <td>
-				    <textarea cols = "60" rows = "10"></textarea>
-				   </td>
-				  </tr>
-				   -->
 				</table>
+				<input type="submit" value="저장하기" class="btn_group">
 				 </form>
 				<!-- /회원가입 항목 -->
 			</div>
-			<input type="submit" value="회원가입" class="btn_group">
-			<br>
 			
+			<br>
+			<button  onclick="location.href='../member/main.me'">돌아가기</button>
 			
 		</div>
 	</div>
