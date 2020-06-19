@@ -15,15 +15,17 @@ import model.Clinicaltrial;
 public interface ClinicaltrialMapper {
 	@Insert("insert into clinicaltrial"
 			+ "(ct_datano,mem_id,ct_week,ct_age,ct_medicine,ct_frequency,ct_otherfqc,ct_dosage,ct_treatment,ct_suppliment,ct_pain,ct_fatigue,ct_side_effect,ct_tumor_size,ct_blood_test)"
-			+ "values (((SELECT MAX(ct_datano) FROM member ALIAS_FOR_SUBQUERY)+1),#{mem_id},#{ct_week},#{ct_age},#{ct_medicine},#{ct_frequency},#{ct_otherfqc},#{ct_dosage},#{ct_treatment},#{ct_suppliment},#{ct_pain},#{ct_fatigue},#{ct_side_effect},#{ct_tumor_size},#{ct_blood_test})")
+			+ "values (((SELECT MAX(ct_datano) FROM clinicaltrial ALIAS_FOR_SUBQUERY)+1),#{mem_id},#{ct_week},#{ct_age},#{ct_medicine},#{ct_frequency},#{ct_otherfqc},#{ct_dosage},#{ct_treatment},#{ct_suppliment},#{ct_pain},#{ct_fatigue},#{ct_side_effect},#{ct_tumor_size},#{ct_blood_test})")
 	int insert(Clinicaltrial ct);
 	
-	@Select({"<script>",
-					"select * from ctdata ",
-					"<if test='mem_id != null'> where binary mem_id=#{mem_id}</if>",
-					"</script>"})
+	@Select({//"<script>",
+					//"select * from clinicaltrial ",
+					//"<if test='ct_datano != null'> where binary ct_datano=#{ct_datano}</if>",
+					"SELECT c.ct_datano, mem_nickname, c.ct_age, m.mem_gender, m.mem_diagnosis, m.mem_stage, c.ct_week, c.ct_medicine, c.ct_frequency, c.ct_otherfqc, c.ct_dosage, c.ct_treatment, c.ct_suppliment, c.ct_pain, c.ct_fatigue, c.ct_side_effect, c.ct_tumor_size, c.ct_blood_test from clinicaltrial c LEFT JOIN member m ON c.mem_id = m.mem_id WHERE c.mem_id <> 'admin'",
+					//"</script>"
+					})
 	//binary : 대소문자 구별
-	List<Member> select(Map<String, Object> map);
+	List<Clinicaltrial> select(Map<String, Object> map);
 	
 	@Select("select mem_id from member where mem_name = #{mem_name} and mem_dateofbirth=#{mem_dateofbirth}")
 	String idSearch(@Param("mem_name") String mem_name, @Param("mem_dateofbirth") String mem_dateofbirth);

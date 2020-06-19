@@ -32,4 +32,43 @@ public class ClinicaltrialDao {
 		}
 		return 0;
 	}
+	
+	
+	//한개 고르는 함수 : 아직 안만듦
+	/*
+	public Member selectOne(String mem_id) {
+		SqlSession session = MyBatisConnection.getConnection();
+		try {
+			map.clear();
+			map.put("mem_id", mem_id);
+			List<Member> list = session.getMapper(cls).select(map);
+			return list.get(0);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			MyBatisConnection.close(session);
+		}
+		return null;
+	}
+	*/
+	
+	//임상 데이터 불러오는 함수
+	public List<Clinicaltrial> list() {
+		SqlSession session = MyBatisConnection.getConnection();
+		/*String sql = "select * from clinicaltrial where ct_datano=?"; no need*/
+		try {
+			List<Clinicaltrial> list = session.getMapper(cls).select(null);
+			return list;	
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			MyBatisConnection.close(session);
+		}
+		return null;
+	}
+	
+	
+	
 }

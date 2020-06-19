@@ -77,6 +77,9 @@ a:visited{color:black; text-decoration: none;}
 		    <li class="tab"> 
 		      <a href="../member/main.me?id=${sessionScope.login}" class="123">소개</a>
 		     </li>
+		     <li class="tab">
+		      <a href="../clinicaltrial/clinicaltrialmain.me" class="123">임상시험</a>
+		     </li>
 		      <li class="tab">
 		      <a href="../clinicaltrial/ctdataForm.me" class="123">임상입력</a>
 		     </li>

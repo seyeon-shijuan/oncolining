@@ -37,6 +37,8 @@
 				<!-- 회원가입 항목 -->
 				<form action="ctdata.me" name="f" method="post" class ="table_form">
 				<input type="hidden" name="mem_id" value="${mem.mem_id}"> <!-- id가 foreign key라서 -->
+				
+				
 				<table class="onco_form_table" >
 				  <tr>
 				   <th> 닉네임 </th>
@@ -65,13 +67,13 @@
 				  <tr>
 				   <th> 복용 약물<br>(복수 선택 가능)  </th>
 				   <td>
-				    <input type = "checkbox" name="ct_medicine"/> Albendazole
-				    <input type = "checkbox" name="ct_medicine" style="margin-left: 43px;"/> Fenbendazole
+				    <input type = "checkbox" name="ct_medicine" value="Albendazole"/> Albendazole
+				    <input type = "checkbox" name="ct_medicine" value="Fenbendazole" style="margin-left: 43px;"/> Fenbendazole
 				    <br/>
-				    <input type = "checkbox" name="ct_medicine"/> Mebendazole
-				    <input type = "checkbox" name="ct_medicine" style="margin-left: 35px;"/> Flubendazole
+				    <input type = "checkbox" name="ct_medicine" value="Mebendazole"/> Mebendazole
+				    <input type = "checkbox" name="ct_medicine" value="Flubendazole" style="margin-left: 35px;"/> Flubendazole
 				    <br/>
-				    <input type = "checkbox" name="ct_medicine"/> Pyrvinium
+				    <input type = "checkbox" name="ct_medicine" value="Pyrvinium" /> Pyrvinium
 				   </td>
 				  </tr>
 					<tr>
@@ -97,16 +99,16 @@
 				   <tr>
 				   <th> 병행 치료<br>(복수 선택 가능)  </th>
 				   <td>
-				    <input type = "checkbox" name="ct_treatment"/> 없음
-				    <input type = "checkbox" name="ct_treatment" style="margin-left: 91px;"/> 면역치료요법
+				    <input type = "checkbox" name="ct_treatment" value="없음" /> 없음
+				    <input type = "checkbox" name="ct_treatment" value="면역치료요법" style="margin-left: 91px;"/> 면역치료요법
 				    <br/>
-				    <input type = "checkbox" name="ct_treatment"/> 항암화학요법
-				    <input type = "checkbox"  name="ct_treatment" style="margin-left: 36px;"/> 방사선치료
+				    <input type = "checkbox" name="ct_treatment" value="항암화학요법"/> 항암화학요법
+				    <input type = "checkbox"  name="ct_treatment" value="방사선치료" style="margin-left: 36px;"/> 방사선치료
 				    <br/>
-				    <input type = "checkbox" name="ct_treatment"/> 호르몬요법
-				    <input type = "checkbox" name="ct_treatment"  style="margin-left: 50px;"/> 표적치료제
+				    <input type = "checkbox" name="ct_treatment" value="호르몬요법"/> 호르몬요법
+				    <input type = "checkbox" name="ct_treatment"  value="표적치료제" style="margin-left: 50px;"/> 표적치료제
 				    <br/>
-				    <input type = "checkbox" name="ct_treatment"/> 기타요법
+				    <input type = "checkbox" name="ct_treatment" value="기타요법"/> 기타요법
 				   </td>
 				  </tr>
 				  <tr>

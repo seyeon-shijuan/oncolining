@@ -23,15 +23,35 @@ public class ctdataAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		//1. 파라미터 정보를 Clinicaltrial 객체에 저장
+		
+		/*ct_medicine 복용약물 복수응답 처리*/
+		String[] value = request.getParameterValues("ct_medicine");
+		String value2="";
+		for(int i=0; i<value.length; i++) {
+			if(i !=0) value2 += ", ";
+			value2 += value[i];
+		}
+		
+		/*ct_treatment 병행치료 복수응답 처리*/
+		String[] value3 = request.getParameterValues("ct_treatment");
+		String value4="";
+		for(int i=0; i<value3.length; i++) {
+			if(i !=0) value4 += ", ";
+			value4 += value3[i];
+		}
+		
+		
 		Clinicaltrial ct = new Clinicaltrial();
 		ct.setMem_id(request.getParameter("mem_id"));
 		ct.setCt_week(request.getParameter("ct_week"));
 		ct.setCt_age(request.getParameter("ct_age"));
-		ct.setCt_medicine(request.getParameter("ct_medicine"));
+		//ct.setCt_medicine(request.getParameter("ct_medicine"));
+		ct.setCt_medicine(value2);
 		ct.setCt_frequency(request.getParameter("ct_frequency"));
 		ct.setCt_otherfqc(request.getParameter("ct_otherfqc"));
 		ct.setCt_dosage(request.getParameter("ct_dosage"));
-		ct.setCt_treatment(request.getParameter("ct_treatment"));
+		//ct.setCt_treatment(request.getParameter("ct_treatment"));
+		ct.setCt_treatment(value4);
 		ct.setCt_suppliment(request.getParameter("ct_suppliment"));
 		ct.setCt_pain(request.getParameter("ct_pain"));
 		ct.setCt_fatigue(request.getParameter("ct_fatigue"));
@@ -48,14 +68,13 @@ public class ctdataAction implements Action {
 		//3.임상 입력 성공: main.me 페이지 이동
 		if(result>0){ //db등록이 된 것이다.
 			msg="임상 데이터가 입력되었습니다.";
-			url="main.me";
+			url="../member/main.me";
 		}
+		//4.임상 입력 실패 : main.me 페이지 이동
+		request.setAttribute("msg", msg);
+		request.setAttribute("url", url);
 		
-		
-		
-		
-		
-		return null;
+		return new ActionForward(false,"../alert.jsp");
 	}
 
 
