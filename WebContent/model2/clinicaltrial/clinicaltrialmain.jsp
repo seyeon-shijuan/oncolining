@@ -7,6 +7,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 
 <%--
 이 페이지를 me로 들어가면
@@ -60,14 +61,26 @@ action.properties에
 	 
 </style>
 <script type="text/javascript">
+
+	var randomColorFactor = function(){
+		return Math.round(Math.random() * 255);
+	}//randomColorFactor
+	
+	var randomColor = function(opa){
+		return "rgba("+ randomColorFactor() + ","
+				+ randomColorFactor() + ","
+				+ randomColorFactor() + ","
+				+(opa || '.3') +")";
+	} //randomColor
+		
 	$(function(){
-		bargraph();
+		piegraph1();
 	})
 	
-		function bargraph(){
-		$.ajax("${path}/model2/ajax/graph2.me",{
+		function piegraph1(){
+		$.ajax("${path}/model2/ajax/graph1.me",{
 			success : function(data){
-				barGraphPrint(data);
+				pieGraphPrint(data);
 			},//success
 			error : function(e){
 				alert("서버 오류: " + e.status);
@@ -75,71 +88,61 @@ action.properties에
 		})//ajax
 	}//graphs
 	
-	function barGraphPrint(data){
+	function pieGraphPrint(data){
 		console.log(data)
 		var rows = JSON.parse(data);
-		var regdates = []
+		var names = []
 		var datas = []
 		var colors = []
 		$.each(rows,function(index,item){
-			regdates[index] = item.board_regdate;
+			names[index] = item.ct_medicine;
 			datas[index] = item.cnt;
 			colors[index] = randomColor(1);
 		})//each
-		var chartData = {
-			labels : regdates,
-			datasets : [{
-				type : 'line',
-				borderWidth : 2,
-				borderColor : colors,
-				label : '건수',
-				fill : false,
-				data : datas
-			},{
-				type : 'bar',
-				label : '건수',
-				backgroundColor : colors,
-				data : datas
-			}]//datasets
-		}//chartData : 데이터에 해당
 		var config = {
-			type : 'bar', //데이터 셋에도 표시하고, 환경설정에도 표시해야 한다.
-			data : chartData, // 위에 chartData를 만든 것을 한번에 이 칸에 넣는다.
+			type : 'pie',
+			data : {
+				datasets : [{
+					data : datas,
+					backgroundColor:colors,
+					borderColor: "#FFFFFF"
+				}],//datasets
+				labels : names
+			},//data
 			options : {
 				responsive : true,
-				legend : {display : false},
+				legend : {position : 'top'},
 				title : {
 		               display : true,
-		               text : '가장 최근부터 글이 등록된 7일',
+		               text : '임상시험 전체 기록 기준 약물 복용 유형',
 		               position : 'top'
 		            },
-				scales:{
-					xAxes: [{
-						display : true,
-						stacked : true
-					}],//xAxes
-					yAxes:[{
-						display : true,
-						stacked : true,
-						scaleLabel : { display: true, labelString:"게시물 작성 건수"},
-						// y축 눈금에서 소수점 제거
-						ticks: {
-			                 beginAtZero: true,
-			                 userCallback: function(label, index, labels) {
-			                     // when the floored value is the same as the value we have a whole number
-			                     if (Math.floor(label) === label) {
-			                         return label;
-			                     }
-			                 }
-			             }
-					}]//yAxes
-				}//scales
+		            tooltips: {
+		            	  callbacks: {
+		            	    label: function(tooltipItem, data) {
+		            	      var index = tooltipItem.index;
+		            	      var currentValue = data.datasets[tooltipItem.datasetIndex].data[index];
+		            	      var total = 0;
+		            	      data.datasets.forEach(function(el){
+		            	        total = total + el.data[index];
+		            	        //여기서 cnt 값을 다 더하는 방법? 지금은 1나오는데..
+		            	      });
+		            	      var percentage = parseFloat((currentValue/total*100).toFixed(1));
+		            	      return currentValue + ' (' + total + '%)';
+		            	    },
+		            	    title: function(tooltipItem, data) {
+		            	      return data.datasets[tooltipItem[0].datasetIndex].label;
+		            	    }
+		            	  }
+		            	}
+
 			}//options
 			
 		}//config
 		var ctx = document.getElementById("canvas1").getContext("2d");
 		new Chart(ctx,config);
-	}//barGraphPrint
+	}//pieGraphPrint
+
 </script>
 </head>
 <body>
@@ -186,72 +189,19 @@ action.properties에
 					</c:forEach>
 					
 				</table>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-								8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
-				8<br>
 				
-			</div>
+			</div> <!-- /two-divs -->
 
 			<!-- /clinical trial data section -->
-
-				<div class="two-divs" style="width: 40%; height: 600px; margin-left: 3%;  padding: 1%; background-color:#F2F2F2; float:left;">
-					<div id="boardcontainer" style="background-color: pink;">
-					<canvas id="canvas1" style="width: 100%; border: 1px solid black;"></canvas>				
-				</div>
-				</div>
 			
 			<!--chart section  -->
 			
-			
+				<div class="two-divs" style="width: 40%; height: 600px; margin-left: 3%;  padding: 1%; background-color:#F2F2F2; float:left;">
+					<div id="boardcontainer" style="background-color: white; height: 400px;">
+					<canvas id="canvas1" style="border: none; height: 380px;"></canvas>				
+				</div>
+				</div>
+
 			<!-- /chart section  -->
 		</div><div style="clear:both;"></div>
 		 <!-- /main contents -->

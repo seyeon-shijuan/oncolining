@@ -70,8 +70,9 @@ public interface ClinicaltrialMapper {
 	@Delete("DELETE FROM member WHERE mem_id=#{mem_id} AND mem_pass=#{mem_pass}")
 	int delete2(Member mem);
 	
-	@Select("select date_format(board_regdate, '%Y-%m-%d') board_regdate,count(*) cnt from board group by date_format(board_regdate, '%Y%m%d') order by board_regdate desc LIMIT 0,7")
-	List<Map<String, Integer>> graph2();
+	@Select("select ct_medicine, count(*) cnt from clinicaltrial WHERE mem_id NOT IN('admin','doc1') group by ct_medicine having COUNT(*)>0 order by cnt DESC")
+	//list : [{ct_medicine:'albendazole',cnt:9},{ct_medicine:'fenbendazole',cnt:3}] map collection을 list collection이 가지고 있는 형태
+	List<Map<String, Integer>> graph1();
 
 	//@Delete("DELETE FROM member WHERE mem_id=#{mem_id}")
 	//int delete(@Param("mem_id") String mem_id);

@@ -94,13 +94,13 @@ public class ClinicaltrialDao {
 		}
 		
 
-		//차트 그리는 함수
-		public List<Map<String, Integer>> boardgraph2() {
+		//첫 번째 파이 그래프 차트 부르는 함수
+		public List<Map<String, Integer>> graph1() {
 			// TODO Auto-generated method stub
 			SqlSession session = MyBatisConnection.getConnection();
 			List<Map<String, Integer>> list = null;
 			try {
-				list = session.getMapper(cls).graph2();
+				list = session.getMapper(cls).graph1();
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();

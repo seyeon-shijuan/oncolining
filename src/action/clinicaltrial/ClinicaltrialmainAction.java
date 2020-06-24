@@ -23,18 +23,20 @@ public class ClinicaltrialmainAction extends UserLoginAction {
 		List<Clinicaltrial> list = new ClinicaltrialDao().list();
 		request.setAttribute("list", list);
 		
-		//우측 차트
+		//우측 차트 : 여기가 함수 시작점
 		ClinicaltrialDao dao = new ClinicaltrialDao();
-		List<Map<String,Integer>> list2 = dao.boardgraph2();
+		//list : [{name:'홍길동',cnt:9},{name:'111',cnt:3}] map collection을 list collection이 가지고 있는 형태
+		List<Map<String,Integer>> list2 = dao.graph1();
+		System.out.println(list2);
 		StringBuilder json = new StringBuilder("[");
 		int i = 0;
 		for(Map<String, Integer> m : list2) {
 			for(Map.Entry<String, Integer> me : m.entrySet() ) {
-				if(me.getKey().equals("name")) json.append("{\"name\":\""+me.getValue()+"\",");
+				if(me.getKey().equals("ct_medicine")) json.append("{\"ct_medicine\":\""+me.getValue()+"\",");
 				if(me.getKey().equals("cnt")) json.append("\"cnt\":"+me.getValue()+"}");
 			}//Map.entry
 			i++;
-			if(i<list.size()) json.append(",");
+			if(i<list.size()-1) json.append(",");
 		}//for
 		json.append("]");
 		request.setAttribute("json", json.toString().trim() );

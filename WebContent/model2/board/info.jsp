@@ -121,9 +121,10 @@
 									    theme: 'snow'
 									  });
 									  $("#comment_form").submit(function() {
-										 	var quill = $('.textofeditor').text();
-											$('textarea[name=cm_content]').val(quill);
-									        $("#editor").val(quill.getContents());
+										  var quill = $('.textofeditor').text();
+										  $('textarea[name=cm_content]').html(quill);
+										  $("#editor").val(quill.getContents());
+										  
 									    });
 									</script>
 									<!-- /Quill Editor -->
