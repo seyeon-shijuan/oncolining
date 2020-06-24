@@ -15,6 +15,7 @@ import com.oreilly.servlet.MultipartRequest;
 import action.ActionForward;
 import model.Board;
 import model.BoardDao;
+import model.Boardcomment;
 
 public class BoardAllAction {
 	private BoardDao dao = new BoardDao();
@@ -44,15 +45,14 @@ public class BoardAllAction {
 				f.mkdirs(); // 존재하지 않으면 폴더 만들기
 			MultipartRequest multi = new MultipartRequest(request, path, 10 * 1024 * 1024, "euc-kr");
 			Board board = new Board();
-			board.setName(multi.getParameter("name"));
-			board.setPass(multi.getParameter("pass"));
-			board.setSubject(multi.getParameter("subject"));
-			board.setContent(multi.getParameter("content"));
-			board.setFile1(multi.getFilesystemName("file1"));
+			board.setMem_id(multi.getParameter("mem_id"));
+			board.setBoard_subject(multi.getParameter("board_subject"));
+			board.setBoard_content(multi.getParameter("board_content"));
+			board.setBoard_file(multi.getFilesystemName("board_file"));
 
 			int num = dao.maxnum(); // board table에서 num 컬럼의 최대값 리턴
-			board.setNum(++num);
-			board.setGrp(num);
+			board.setBoard_no(++num);
+			board.setBoard_grp(num);
 			if (dao.insert(board)) {
 				msg = "게시물 등록 성공";
 				url = "list.do";
@@ -73,6 +73,7 @@ public class BoardAllAction {
 	 * request의 객체의 속성으로 등록하여 list.jsp로 페이지 이동
 	 */
 	public ActionForward list(HttpServletRequest request, HttpServletResponse response) {
+		//System.out.println("list******");
 		int pageNum = 1; // page 번호 초기화
 		try {
 			pageNum = Integer.parseInt(request.getParameter("pageNum"));
@@ -127,8 +128,53 @@ public class BoardAllAction {
 		int num = Integer.parseInt(request.getParameter("num"));
 		Board b = dao.selectOne(num); // 해당 게시물 조회하는 함수
 		dao.readcntAdd(num); // 해당 게시물의 조회수를 1 증가시키는 함수
+		
+		//코멘트 불러오기
+		List <Boardcomment> c = dao.selectComment(num);
+		
 		request.setAttribute("b", b);
+		request.setAttribute("c", c);
 		return new ActionForward();
+	}
+	
+	public ActionForward writecomment(HttpServletRequest request, HttpServletResponse response) {
+
+		String msg = "코멘트가 등록되지 않았습니다.";
+		String url = "info.do";
+		String path = request.getServletContext().getRealPath("/") + "model2/board/file/";
+		
+		try {
+			File f = new File(path);
+			if (!f.exists())
+				f.mkdirs(); // 존재하지 않으면 폴더 만들기
+			MultipartRequest multi = new MultipartRequest(request, path, 10 * 1024 * 1024, "euc-kr");
+			
+			Boardcomment c = new Boardcomment();
+			c.setBoard_no(Integer.parseInt(multi.getParameter("board_no")));
+			c.setCm_title(multi.getParameter("cm_title"));
+			c.setCm_content(multi.getParameter("cm_content"));
+			System.out.println("==============");
+			System.out.println();
+			System.out.println(multi.getParameter("cm_content"));
+			System.out.println();
+			System.out.println("==============");
+			c.setCm_file(multi.getFilesystemName("cm_file"));
+			c.setMem_id(multi.getParameter("mem_id"));
+			
+			int num = dao.maxnumofCmt(); // board table에서 num 컬럼의 최대값 리턴
+			c.setCm_no(++num);
+			if (dao.insertComment(c)) {
+				msg = "게시물 등록 성공";
+				url = "info.do?num="+multi.getParameter("board_no");
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		request.setAttribute("msg", msg);
+		request.setAttribute("url", url);
+		System.out.println(url);
+		return new ActionForward(false, "../alert.jsp");
 	}
 
 	public ActionForward replyForm(HttpServletRequest request, HttpServletResponse response) {
@@ -142,26 +188,25 @@ public class BoardAllAction {
 			throws UnsupportedEncodingException {
 		request.setCharacterEncoding("euc-kr");
 		Board b = new Board();
-		b.setNum(Integer.parseInt(request.getParameter("num")));
-		b.setGrp(Integer.parseInt(request.getParameter("grp")));
-		b.setGrplevel(Integer.parseInt(request.getParameter("grplevel")));
-		b.setGrpstep(Integer.parseInt(request.getParameter("grpstep")));
-		b.setName(request.getParameter("name"));
-		b.setPass(request.getParameter("pass"));
-		b.setSubject(request.getParameter("subject"));
-		b.setContent(request.getParameter("content"));
+		b.setBoard_no(Integer.parseInt(request.getParameter("num")));
+		b.setBoard_grp(Integer.parseInt(request.getParameter("board_grp")));
+		b.setBoard_grplevel(Integer.parseInt(request.getParameter("board_grplevel")));
+		b.setBoard_grpstep(Integer.parseInt(request.getParameter("board_grpstep")));
+		b.setMem_id(request.getParameter("mem_id"));
+		b.setBoard_subject(request.getParameter("board_subject"));
+		b.setBoard_content(request.getParameter("board_content"));
 		// 자바빈이 안되서 Board 객체를 만들고 모든 parameters를 불러온다.
 
 		// 현재 등록된 답글은 원글 바로 아래에 조회되도록 database를 수정해야 한다.
-		dao.grpStepAdd(b.getGrp(), b.getGrpstep());
-		int grplevel = b.getGrplevel();
-		int grpstep = b.getGrpstep();
-		int num = dao.maxnum(); // num의 최대값 저장 why??
+		dao.grpStepAdd(b.getBoard_grp(), b.getBoard_grpstep());
+		int board_grplevel = b.getBoard_grplevel();
+		int board_grpstep = b.getBoard_grpstep();
+		int num = dao.maxnum(); // num의 최대값 저장
 		String msg = "답변등록시 오류발생";
-		String url = "replyForm.do?num=" + b.getNum(); // b는 model.Board에서 온거다.
-		b.setNum(++num);
-		b.setGrplevel(grplevel + 1); // 원글보다 1크게
-		b.setGrpstep(grpstep + 1); // 원글보다 1 크게
+		String url = "replyForm.do?num=" + b.getBoard_no(); // b는 model.Board에서 온거다.
+		b.setBoard_no(++num);
+		b.setBoard_grplevel(board_grplevel + 1); // 원글보다 1크게
+		b.setBoard_grpstep(board_grpstep + 1); // 원글보다 1 크게
 		// grp는 원글과 새 답글이 같다.
 		if (dao.insert(b)) {
 			msg = "답변등록 완료";
@@ -178,30 +223,29 @@ public class BoardAllAction {
 		Board b = new Board();
 		String path = request.getServletContext().getRealPath("/") + "model2/board/file/";
 		MultipartRequest multi = new MultipartRequest(request, path, 10 * 1024 * 1024, "euc-kr");
-		b.setNum(Integer.parseInt(multi.getParameter("num")));
-		b.setName(multi.getParameter("name"));
-		b.setPass(multi.getParameter("pass"));
-		b.setSubject(multi.getParameter("subject"));
-		b.setContent(multi.getParameter("content"));
-		b.setFile1(multi.getFilesystemName("file1"));
-		if (b.getFile1() == null || b.getFile1().equals("")) {
-			b.setFile1(multi.getParameter("file2"));
+		b.setBoard_no(Integer.parseInt(multi.getParameter("board_no")));
+		b.setMem_id(multi.getParameter("mem_id"));
+		b.setBoard_subject(multi.getParameter("board_subject"));
+		b.setBoard_content(multi.getParameter("board_content"));
+		b.setBoard_file(multi.getFilesystemName("board_file"));
+		if (b.getBoard_file() == null || b.getBoard_file().equals("")) {
+			b.setBoard_file(multi.getParameter("file2"));
 		}
 
 		// 2. 비밀번호 검증
 		// dbBoard : 수정전 정보 저장. 비밀번호 검증시 사용
-		Board dbBoard = dao.selectOne(b.getNum());
-		String msg = "비밀번호가 틀렸습니다.";
-		String url = "updateForm.do?num=" + b.getNum();
-		if (b.getPass().equals(dbBoard.getPass())) {
+		Board dbBoard = dao.selectOne(b.getBoard_no());
+		String msg = "잘못된 경로입니다.";
+		String url = "updateForm.do?num=" + b.getBoard_no();
+		//if (b.getPass().equals(dbBoard.getPass())) {
 			if (dao.update(b)) {
 				msg = "게시물 수정 완료";
-				url = "info.do?num=" + b.getNum();
+				url = "info.do?num=" + b.getBoard_no();
 			} else {
 				msg = "게시물 수정 실패";
 			}
 
-		}
+		//}
 		request.setAttribute("msg", msg);
 		request.setAttribute("url", url);
 		return new ActionForward(false, "../alert.jsp");
@@ -209,8 +253,7 @@ public class BoardAllAction {
 
 	public ActionForward delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		request.setCharacterEncoding("euc-kr");
-		int num = Integer.parseInt(request.getParameter("num"));
-		String pass = request.getParameter("pass");
+		int num = Integer.parseInt(request.getParameter("board_no"));
 		String msg = "게시글의 비밀번호가 틀렸습니다";
 		String url = "deleteForm.do?num=" + num;
 		Board board = dao.selectOne(num);
@@ -218,7 +261,7 @@ public class BoardAllAction {
 			msg = "없는 게시글입니다. ";
 			url = "list.do";
 		} else {
-			if (pass.equals(board.getPass())) {
+			//if (pass.equals(board.getPass())) {
 				if (dao.delete(num)) {
 					msg = "게시글 삭제 성공";
 					url = "list.do";
@@ -226,7 +269,7 @@ public class BoardAllAction {
 					msg = "게시글 삭제 실패";
 					url = "info.do?num=" + num;
 				}
-			}
+			//}
 		} // else
 		request.setAttribute("msg", msg);
 		request.setAttribute("url", url);

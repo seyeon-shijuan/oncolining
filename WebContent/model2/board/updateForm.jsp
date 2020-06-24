@@ -19,31 +19,33 @@
  	  document.f.file2.value=""; 
  	  file_desc.style.display="none"; 
    } 
- </script> 
+ </script>
+ <script type="text/javascript" src="http://cdn.ckeditor.com/4.5.7/full/ckeditor.js"></script>
  </head> 
  <body> 
  <form action="update.do" method="post" enctype="multipart/form-data" 
     name="f"> 
-    <input type="hidden" name="num" value="${b.num}"> 
+    <input type="hidden" name="board_no" value="${b.board_no}"> 
     <input type="hidden" name="file2"  
-    value="${b.file1 }"> 
+    value="${b.board_file}"> 
     <table><caption>게시판 수정 화면</caption> 
     <tr><td>글쓴이</td><td> 
-    <input type="text" name="name" value="${b.name }"></td></tr> 
-    <tr><td>비밀번호</td><td><input type="password" name="pass"></td></tr> 
+    <input type="text" name="mem_id" value="${b.mem_id}"></td></tr> 
     <tr><td>제목</td><td> 
-    <input type="text" name="subject" value="${b.subject }"></td></tr> 
+    <input type="text" name="board_subject" value="${b.board_subject}"></td></tr> 
     <tr><td>내용</td><td> 
-    <textarea rows="15" name="content" id="content1">${b.content }</textarea></td></tr> 
+    <textarea rows="15" name="board_content" id="content1">${b.board_content}</textarea></td></tr> 
     <script>CKEDITOR.replace("content1",{filebrowserImageUploadUrl : "imgupload.do"});</script>
     <tr><td>첨부파일</td><td style="text-align: left"> 
-    <c:if test="${!empty b.file1 }">
-   	 <div id="file_desc">${b.file1 }
+    <c:if test="${!empty b.board_file}">
+   	 <div id="file_desc">${b.board_file}
      	<a href="javascript:file_delete()">[첨부파일 삭제]</a>
      </div> 
     </c:if> 
-    <input type="file" name="file1"></td></tr> 
-    <tr><td colspan="2"> 
-    <a href="javascript:document.f.submit()">[게시물수정]</a></td></tr> 
+    <input type="file" name="board_file"></td></tr> 
+    <tr><td colspan="2">
+	<a href="javascript:document.f.submit()" style="margin: 0 2% 0 2%">수정하기</a>
+    <a href= "#" onClick="history.go(-1)" style="margin: 0 2% 0 2%">돌아가기</a> 
+    </td></tr> 
     </table>    
  </form></body></html> 

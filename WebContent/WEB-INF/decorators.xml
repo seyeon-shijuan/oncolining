@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="euc-kr" ?>
 <!-- /WEB-INF/decorators.xml -->
 <decorators defaultdir="/layout">
-   <decorator name="member" page="memberlayout.jsp">
-      <pattern>/model2/member/*</pattern>
-   </decorator>
-   <decorator name="board" page="memberlayout.jsp">
-      <pattern>/model2/board/*</pattern>
-   </decorator>
-      <decorator name="chat" page="memberlayout.jsp">
-      <pattern>/model2/chat/*</pattern>
-   </decorator>
-         <decorator name="clinicaldata" page="memberlayout.jsp">
-      <pattern>/model2/clinicaltrial/*</pattern>
-   </decorator>
+	<decorator name="member" page="memberlayout.jsp">
+		<pattern>/model2/member/*</pattern>
+		<pattern>/model2/board/*</pattern>
+		<pattern>/model2/chat/*</pattern>
+		<pattern>/model2/clinicaltrial/*</pattern>
+		<pattern>/model2/scrap/*</pattern>
+	</decorator>  
+  
    
    <excludes>
       <pattern>/model2/member/id*</pattern>
       <pattern>/model2/member/pw*</pattern>
       <pattern>/model2/member/picture*</pattern>
       <pattern>/model2/member/password*</pattern>
+      <pattern>/model2/clinicaltrial/ctdeleteForm*</pattern>
+      <pattern>/model2/board/delete*</pattern>
 
    </excludes>
 </decorators>

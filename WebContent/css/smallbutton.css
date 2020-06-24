@@ -1,0 +1,18 @@
+/*  /WebContent/css/smallbutton.css   */
+	.small_button_on {
+		border-radius: 12px;
+		font-size: small;
+		padding: 3px 10px 3px 10px;
+		margin: 0 6% 0 6%;
+		background-color: #DB0000;
+		color: white;
+		border: none;
+	}
+	.small_button_off {
+		border-radius: 12px;
+		font-size: small;
+		padding: 3px 10px 3px 10px;
+		margin: 0 6% 0 6%;
+		background-color: gray;
+		color: white;
+		border: none;

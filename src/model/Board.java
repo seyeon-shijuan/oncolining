@@ -2,91 +2,86 @@ package model;
 import java.util.Date;
 // 이 지문은 VO다.
 public class Board {
-	private int num;
-	private String name;
-	private String pass;
-	private String subject;
-	private String content;
-	private String file1;
-	private Date regdate;
-	private int readcnt;
-	private int grp;
-	private int grplevel;
-	private int grpstep;
+	private int board_no;
+	private String mem_id;
+	private String board_subject;
+	private String board_content;
+	private String board_file;
+	private Date board_regdate;
+	private int board_readcnt;
+	private int board_grp;
+	private int board_grplevel;
+	private int board_grpstep;
+	
 	
 	//getter, setter, toString
+	public int getBoard_no() {
+		return board_no;
+	}
+	public void setBoard_no(int board_no) {
+		this.board_no = board_no;
+	}
+	public String getMem_id() {
+		return mem_id;
+	}
+	public void setMem_id(String mem_id) {
+		this.mem_id = mem_id;
+	}
+	public String getBoard_subject() {
+		return board_subject;
+	}
+	public void setBoard_subject(String board_subject) {
+		this.board_subject = board_subject;
+	}
+	public String getBoard_content() {
+		return board_content;
+	}
+	public void setBoard_content(String board_content) {
+		this.board_content = board_content;
+	}
+	public String getBoard_file() {
+		return board_file;
+	}
+	public void setBoard_file(String board_file) {
+		this.board_file = board_file;
+	}
+	public Date getBoard_regdate() {
+		return board_regdate;
+	}
+	public void setBoard_regdate(Date board_regdate) {
+		this.board_regdate = board_regdate;
+	}
+	public int getBoard_readcnt() {
+		return board_readcnt;
+	}
+	public void setBoard_readcnt(int board_readcnt) {
+		this.board_readcnt = board_readcnt;
+	}
+	public int getBoard_grp() {
+		return board_grp;
+	}
+	public void setBoard_grp(int board_grp) {
+		this.board_grp = board_grp;
+	}
+	public int getBoard_grplevel() {
+		return board_grplevel;
+	}
+	public void setBoard_grplevel(int board_grplevel) {
+		this.board_grplevel = board_grplevel;
+	}
+	public int getBoard_grpstep() {
+		return board_grpstep;
+	}
+	public void setBoard_grpstep(int board_grpstep) {
+		this.board_grpstep = board_grpstep;
+	}
 	
-	public int getNum() {
-		return num;
-	}
-	public void setNum(int num) {
-		this.num = num;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getPass() {
-		return pass;
-	}
-	public void setPass(String pass) {
-		this.pass = pass;
-	}
-	public String getSubject() {
-		return subject;
-	}
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
-	}
-	public String getFile1() {
-		return file1;
-	}
-	public void setFile1(String file1) {
-		this.file1 = file1;
-	}
-	public Date getRegdate() {
-		return regdate;
-	}
-	public void setRegdate(Date regdate) {
-		this.regdate = regdate;
-	}
-	public int getReadcnt() {
-		return readcnt;
-	}
-	public void setReadcnt(int readcnt) {
-		this.readcnt = readcnt;
-	}
-	public int getGrp() {
-		return grp;
-	}
-	public void setGrp(int grp) {
-		this.grp = grp;
-	}
-	public int getGrplevel() {
-		return grplevel;
-	}
-	public void setGrplevel(int grplevel) {
-		this.grplevel = grplevel;
-	}
-	public int getGrpstep() {
-		return grpstep;
-	}
-	public void setGrpstep(int grpstep) {
-		this.grpstep = grpstep;
-	}
 	@Override
 	public String toString() {
-		return "board [num=" + num + ", name=" + name + ", pass=" + pass + ", subject=" + subject + ", content="
-				+ content + ", file1=" + file1 + ", regdate=" + regdate + ", readcnt=" + readcnt + ", grp=" + grp
-				+ ", grplevel=" + grplevel + ", grpstep=" + grpstep + "]";
+		return "Board [board_no=" + board_no + ", mem_id=" + mem_id + ", board_subject=" + board_subject
+				+ ", board_content=" + board_content + ", board_file=" + board_file + ", board_regdate=" + board_regdate
+				+ ", board_readcnt=" + board_readcnt + ", board_grp=" + board_grp + ", board_grplevel=" + board_grplevel
+				+ ", board_grpstep=" + board_grpstep + "]";
 	}
 	
 }

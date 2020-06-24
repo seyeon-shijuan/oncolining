@@ -34,7 +34,7 @@
 			
 			
 			<div>
-				<!-- 회원가입 항목 -->
+				<!-- 임상입력 항목 -->
 				<form action="ctdata.me" name="f" method="post" class ="table_form">
 				<input type="hidden" name="mem_id" value="${mem.mem_id}"> <!-- id가 foreign key라서 -->
 				
@@ -89,12 +89,15 @@
 				  </tr>
 				  <tr>
 				   <th> 기타용법</th>
-				   <td> <input type = "text" name="ct_otherfqc"/> </td>
+				   <td> <input type = "text" name="ct_otherfqc" maxlength="180" placeholder="2개 이상 약 복용시 복용량까지 이 곳에 작성"/> </td>
 				  </tr>
 				   <tr>
 				   <tr>
-				   <th> 복용량</th>
-				   <td> <input type = "text" name="ct_dosage"/> </td>
+				   <th> 복용량 (일)</th>
+				   <td> 
+				   <input type = "text" name="ct_dosage" placeholder="숫자만 입력가능합니다. ex) 300" /> <br>
+				   <span style="font-size: xx-small;">*복수약물 복용자는 알벤다졸 복용량을 적어주시고, 그 외는 기타용법에 작성해주세요.</span>
+				   </td>
 				  </tr>
 				   <tr>
 				   <th> 병행 치료<br>(복수 선택 가능)  </th>
@@ -141,25 +144,33 @@
 				  </tr>
 				  <tr>
 				   <th> 부작용·의심증상</th>
-				   <td> <input type = "text" name="ct_side_effect"/> </td>
+				   <td> <input type = "text" name="ct_side_effect" maxlength="180"/> </td>
 				  </tr>
 				  <tr>
 				   <th> 종양 크기 변화<br> (검사한 경우)</th>
-				   <td> <input type = "text" name="ct_tumor_size"/> </td>
+				   <td> 
+				  	 <input type = "text" name="ct_tumor_size" maxlength="180"  placeholder="'줄어들었음' 혹은 '커졌음'을 포함해서 작성해주세요." /> 
+				  	 <br>
+				  	 <span style="font-size: xx-small;">*ex) 1cm에서 0.9cm로 줄어들었음</span>
+				   </td>
 				  </tr>
 				 <tr>
 				   <th> 종양 수치 변화<br> (검사한 경우)</th>
-				   <td> <input type = "text" name="ct_blood_test"/> </td>
+				   <td> 
+				   <input type = "text" name="ct_blood_test" maxlength="180" placeholder="'감소했음' 혹은 '증가했음'을 포함해서 작성해주세요."/> 
+				   <br>
+				   <span style="font-size: xx-small;">*ex) 피검사 수치가 270에서 190으로 감소했음</span>
+				   </td>
 				  </tr>
 				  
 				</table>
 				<input type="submit" value="저장하기" class="btn_group">
 				 </form>
-				<!-- /회원가입 항목 -->
+				<!-- /입상입력 항목 -->
 			</div>
 			
 			<br>
-			<button  onclick="location.href='../member/main.me'">돌아가기</button>
+			<button  onClick="history.go(-1)">돌아가기</button>
 			
 		</div>
 	</div>

@@ -34,29 +34,23 @@ public class ClinicaltrialDao {
 	}
 	
 	
-	//한개 고르는 함수 : 아직 안만듦
-	/*
-	public Member selectOne(String mem_id) {
+	//임상 데이터 한개 고르는 함수 (ct_datano로)
+	public Clinicaltrial selectOne(int num) { //여기의 num은 db의 ct_datano
 		SqlSession session = MyBatisConnection.getConnection();
 		try {
-			map.clear();
-			map.put("mem_id", mem_id);
-			List<Member> list = session.getMapper(cls).select(map);
-			return list.get(0);
+			return session.getMapper(cls).selectdata(num);
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}finally {
 			MyBatisConnection.close(session);
 		}
 		return null;
 	}
-	*/
+
 	
 	//임상 데이터 불러오는 함수
 	public List<Clinicaltrial> list() {
 		SqlSession session = MyBatisConnection.getConnection();
-		/*String sql = "select * from clinicaltrial where ct_datano=?"; no need*/
 		try {
 			List<Clinicaltrial> list = session.getMapper(cls).select(null);
 			return list;	
@@ -69,6 +63,66 @@ public class ClinicaltrialDao {
 		return null;
 	}
 	
+	//나의 임상 데이터 불러오는 함수
+		public List<Clinicaltrial> mylist(String login) {
+			SqlSession session = MyBatisConnection.getConnection();
+			try {
+				List<Clinicaltrial> mylist = session.getMapper(cls).selectmine(login);
+				
+				return mylist;	
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			} finally {
+				MyBatisConnection.close(session);
+			}
+			return null;
+		}
+		
+		//임상 수정 함수
+		public int update(Clinicaltrial ct) { // Clinicaltrial가 data type, ct가 reference
+			SqlSession session = MyBatisConnection.getConnection();
+			try {
+				return session.getMapper(cls).update(ct);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			} finally {
+				MyBatisConnection.close(session);
+			}
+			return 0;
+		}
+		
+
+		//차트 그리는 함수
+		public List<Map<String, Integer>> boardgraph2() {
+			// TODO Auto-generated method stub
+			SqlSession session = MyBatisConnection.getConnection();
+			List<Map<String, Integer>> list = null;
+			try {
+				list = session.getMapper(cls).graph2();
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			} finally {
+				MyBatisConnection.close(session);
+			}
+			return list;
+		}
+
+
+		public boolean delete(int ct_datano) {
+			SqlSession session = MyBatisConnection.getConnection();
+			try { 
+	 			session.getMapper(cls).delete(ct_datano);
+	 			return true; 
+	 		} catch (Exception e) { 
+	 			e.printStackTrace(); 
+	 		} finally { 
+	 			MyBatisConnection.close(session);
+	 		} 
+			return false;
+		}
 	
 	
 }

@@ -20,7 +20,7 @@ display: inline;
 list-style:none; margin:0 3%;
 }
 img{width:160px; hight:auto;}
-.logo{margin-right:20%;}
+.logo{margin-right:90%;}
 .welcoming{font-size:small; text-align:right; margin-right:5%;}
 .welcoming_inner_a { margin : 1%;}
 li a:link{color:gray; text-decoration: none;}
@@ -32,16 +32,16 @@ a:visited{color:black; text-decoration: none;}
 
 .tab_outer {margin-bottom: 2%; text-align: right;}
 .mainbody {margin : 2%; text-align: center; align-content: center;}
-.top{margin-bottom: 6%;}
+.top{margin-bottom: 1%;}
 .logo_image {
 	position: relative;
 	left: 5%;
 	top: 5%;
 	width: 20%;
         }
-
+.titletext {font-size: x-small; color: gray; font-family: courier; font-style: italic;  }
 </style>
-<script type="text/javascript" src="http://cdn.ckeditor.com/4.5.7/full/ckeditor.js"></script>
+<%-- <script type="text/javascript" src="http://cdn.ckeditor.com/4.5.7/full/ckeditor.js"></script> --%>
 <decorator:head/>
 <body>
  
@@ -67,30 +67,38 @@ a:visited{color:black; text-decoration: none;}
    
 	   <!-- logo image and tab -->   
 	 	<div class="tab_outer">
-		   <ul>
-		    <li class="logo">
-		     <a href="../member/main.me">
-		      <img src="../../img/small_logo.JPG"/>
-		     </a>
-		    </li>
-		    
+	 		<div class="two_divs">
+		 		<ul>
+			    <div class="logo">
+			     <a href="../member/main.me">
+			      <img src="../../img/small_logo.JPG"/>
+			     </a>
+		   	 </div> <!-- logo -->
+	 		</div>
+	 		<div class="two_divs">
 		    <li class="tab"> 
 		      <a href="../member/main.me?id=${sessionScope.login}" class="123">소개</a>
 		     </li>
 		     <li class="tab">
 		      <a href="../clinicaltrial/clinicaltrialmain.me" class="123">임상시험</a>
 		     </li>
+		     <!--
 		      <li class="tab">
 		      <a href="../clinicaltrial/ctdataForm.me" class="123">임상입력</a>
+		     </li>  -->
+		     <li class="tab">
+		      <a href="../scrap/news.jsp" class="123" >학술 스크랩</a>
 		     </li>
+		     <!--
 		     <li class="tab">
 		      <a href="../member/list.me?id=${sessionScope.login}" class="123" >회원관리</a>
-		     </li>
+		     </li>  -->
 		     <li class="tab">
-		      <a href="../board/list.do" class="123">게시판</a>
+		      <a href="../board/list.do" class="123">임상포럼</a>
 		     </li>
-		    </ul> 
-	   </div>
+		    </ul>
+		   </div>
+	   </div> <!-- tab_outer -->
 	   <!-- /logo image and tab -->
  </div>
 <!-- Navbar -->
@@ -100,7 +108,7 @@ a:visited{color:black; text-decoration: none;}
 	<div class="container">
 		<div class="span4">
 			<div class="inner-heading">
-				<p class="titletext">patients' clinical data platform</p>
+				<p class="titletext">Clinical Trial Platform for the Patients with Cancer</p>
 			</div>
 		</div>
 	</div>

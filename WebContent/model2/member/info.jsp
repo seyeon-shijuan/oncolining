@@ -21,9 +21,10 @@ id parameter 값과 login id가 다른 경우: 내정보 조회만 가능합니다. 메세지를 출력 
 <meta charset="EUC-KR">
 <title>회원 정보</title>
 <link rel="stylesheet" href="../../css/main.css">
+<link rel="stylesheet" href="../../css/smallbutton.css">
 <style>
 .person_table {margin : auto; padding: 50px}
-.inner_frame {text-align: center;}
+.inner_frame {text-align: center; margin-top: 2%;}
    table{
 		margin-left: auto;
 		margin-right: auto;
@@ -40,6 +41,7 @@ id parameter 값과 login id가 다른 경우: 내정보 조회만 가능합니다. 메세지를 출력 
 		width: 200px; height: 40px;
 		margin: 20px;
 	}
+
 </style>
 <script type="text/javascript">
 // 패스워드 고치는 함수
@@ -53,6 +55,8 @@ function win_passchg() {
 <body>
 
 <div class="outer_frame">
+	<button  class="small_button_on" onclick="location.href='../member/info.me?mem_id=${sessionScope.login}'">&nbsp;&nbsp;회원 정보&nbsp;&nbsp;</button>
+	<button  class="small_button_off"  onclick="location.href='../clinicaltrial/myclinicaltrial.me'">나의 임상시험</button>
 	<div class="inner_frame">
 		<span class="spantag">임상회원 정보</span>
 		<div class="person_table">

@@ -25,9 +25,9 @@
 	font-size: medium;
 	font: gray;
 	display: inline-block;
-	/*vertical-align: bottom;*/
+	vertical-align: bottom;
 	margin-top: 50px;
-	margin-left: 10%;
+	margin-left: 5%;
 }
 
 /*.content{margin:30px 60px;}*/

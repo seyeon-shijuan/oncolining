@@ -22,6 +22,7 @@ public class LoginAction implements Action{
 		if(mem != null) {
 			if(mem_pass.equals(mem.getMem_pass())){
 				request.getSession().setAttribute("login",mem_id); //로그인 할 때 세션에 id 저장, identifier는 login
+				request.getSession().setAttribute("nickname",mem.getMem_nickname()); //로그인 할 때 세션에 nickname 저장, identifier는 nickname
 				msg = mem.getMem_name()+ "("+ mem.getMem_nickname() +")"+ "님이 로그인 했습니다.";
 				url = "main.me";
 			} else {

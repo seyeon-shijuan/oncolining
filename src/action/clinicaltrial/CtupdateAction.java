@@ -18,7 +18,7 @@ import model.MemberDao;
  *  입상 입력 실패: ctdataForm.me 페이지 이동
  */
 
-public class ctdataAction implements Action {
+public class CtupdateAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
@@ -42,6 +42,7 @@ public class ctdataAction implements Action {
 		
 		
 		Clinicaltrial ct = new Clinicaltrial();
+		ct.setCt_datano(request.getParameter("ct_datano"));
 		ct.setMem_id(request.getParameter("mem_id"));
 		ct.setCt_week(request.getParameter("ct_week"));
 		ct.setCt_age(request.getParameter("ct_age"));
@@ -60,15 +61,15 @@ public class ctdataAction implements Action {
 		ct.setCt_blood_test(request.getParameter("ct_blood_test"));
 		
 		//2. Clinicaltrial 객체의 정보를 db에 저장
-		String msg="임상 데이터가 전송되지 않았습니다.";
-		String url = "ctdataForm.me";
+		String msg="임상 데이터가 수정되지 않았습니다.";
+		String url = "ctupdateForm.me?num=${c.ct_datano}"; //여기 리로드로바꾸셈
 		
 		ClinicaltrialDao dao = new ClinicaltrialDao();
-		int result= dao.insert(ct);
+		int result= dao.update(ct);
 		//3.임상 입력 성공: main.me 페이지 이동
 		if(result>0){ //db등록이 된 것이다.
-			msg="임상 데이터가 입력되었습니다.";
-			url="../clinicaltrial/myclinicaltrial.me";
+			msg="임상 데이터가 수정되었습니다.";
+			url="../clinicaltrial/myclinicaltrial.me"; 
 		}
 		//4.임상 입력 실패 : main.me 페이지 이동
 		request.setAttribute("msg", msg);

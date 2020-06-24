@@ -17,6 +17,12 @@ public class Clinicaltrial {
 	private String ct_tumor_size;
 	private String ct_blood_test;
 	
+	private String mem_nickname;
+	private String mem_gender;
+	private String mem_diagnosis;
+	private String mem_stage;
+	
+	
 	
 	//getter, setter, toString
 	public String getCt_datano() {
@@ -109,6 +115,50 @@ public class Clinicaltrial {
 	public void setCt_blood_test(String ct_blood_test) {
 		this.ct_blood_test = ct_blood_test;
 	}
+	
+	
+	// LEFT JOIN 후 추가되는 Member table elements
+	
+	public String getMem_nickname() {
+		return mem_nickname;
+	}
+	public void setMem_nickname(String mem_nickname) {
+		this.mem_nickname = mem_nickname;
+	}
+	public String getMem_gender() {
+		return mem_gender;
+	}
+	public void setMem_gender(String mem_gender) {
+		this.mem_gender = mem_gender;
+	}
+	public String getMem_diagnosis() {
+		return mem_diagnosis;
+	}
+	public void setMem_diagnosis(String mem_diagnosis) {
+		this.mem_diagnosis = mem_diagnosis;
+	}
+	public String getMem_stage() {
+		return mem_stage;
+	}
+	public void setMem_stage(String mem_stage) {
+		this.mem_stage = mem_stage;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "Clinicaltrial [ct_datano=" + ct_datano + ", mem_id=" + mem_id + ", ct_week=" + ct_week + ", ct_age="
+				+ ct_age + ", ct_medicine=" + ct_medicine + ", ct_frequency=" + ct_frequency + ", ct_otherfqc="
+				+ ct_otherfqc + ", ct_dosage=" + ct_dosage + ", ct_treatment=" + ct_treatment + ", ct_suppliment="
+				+ ct_suppliment + ", ct_pain=" + ct_pain + ", ct_fatigue=" + ct_fatigue + ", ct_side_effect="
+				+ ct_side_effect + ", ct_tumor_size=" + ct_tumor_size + ", ct_blood_test=" + ct_blood_test
+				+ ", mem_nickname=" + mem_nickname + ", mem_gender=" + mem_gender + ", mem_diagnosis=" + mem_diagnosis
+				+ ", mem_stage=" + mem_stage + "]";
+	}
+	
+	
+	/*
+	원래 toString
 	@Override
 	public String toString() {
 		return "Clinicaltrial [ct_datano=" + ct_datano + ", mem_id=" + mem_id + ", ct_week=" + ct_week + ", ct_age="
@@ -117,6 +167,7 @@ public class Clinicaltrial {
 				+ ct_suppliment + ", ct_pain=" + ct_pain + ", ct_fatigue=" + ct_fatigue + ", ct_side_effect="
 				+ ct_side_effect + ", ct_tumor_size=" + ct_tumor_size + ", ct_blood_test=" + ct_blood_test + "]";
 	}
+	*/
 	
 	
 	

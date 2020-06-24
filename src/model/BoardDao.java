@@ -22,7 +22,7 @@ public class BoardDao {
 		SqlSession session  = MyBatisConnection.getConnection();
 		try {
 			map.clear();
-			//subject, name이 들어온다.
+			//subject, mem_id이 들어온다.
 			if(column != null) {
 				String[] cols =  column.split(",");
 				//cols[0]에는 subject가 들어간다.
@@ -59,8 +59,6 @@ public class BoardDao {
 	//게시물을 등록하는 method
 	public boolean insert(Board board) {
 		  SqlSession session = MyBatisConnection.getConnection();
-		  String sql = "insert into board (num, name, pass, subject, content, file1, regdate, readcnt, grp, grplevel, grpstep) values(?,?,?,?,?,?,now(),?,?,?,?)";
-		  //FYI
 		  try {
 			  session.getMapper(cls).insert(board);
 			  return true;
@@ -104,12 +102,11 @@ public class BoardDao {
 	}
 	
 	// 한개 고르기 (num=31)
-	public Board selectOne(int num) { //여기의 num은 db의 num
+	public Board selectOne(int board_no) { //여기의 board_no은 db의 board_no
 		SqlSession session = MyBatisConnection.getConnection();
-		//String sql="select * from board where num=?";
 		try {
 			map.clear();
-			map.put("num", num);
+			map.put("board_no", board_no);
 			return session.getMapper(cls).select(map).get(0);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -122,11 +119,10 @@ public class BoardDao {
 	
 	
 	//조회수 올리는 함수
-	public void readcntAdd(int num) {
+	public void readcntAdd(int board_no) {
 		SqlSession session = MyBatisConnection.getConnection();
 		try {
-			//pstmt = conn.prepareStatement("update board set readcnt = readcnt + 1 where num = ?");
-			session.getMapper(cls).readcntAdd(num);
+			session.getMapper(cls).readcntAdd(board_no);
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -135,12 +131,10 @@ public class BoardDao {
 	}
 	
 	//grpStep 숫자 올리는 함수
-	public void grpStepAdd(int grp, int grpstep) {
+	public void grpStepAdd(int board_grp, int board_grpstep) {
 		SqlSession session = MyBatisConnection.getConnection();
-		//String sql ="update board set grpstep=grpstep+1 where grp=? and grpstep>?";
-		// 지금 만드는 reply의 grpstep 보다 높은 것들은 전부다 +1씩 시킨다.
 		try {
-			session.getMapper(cls).grpStepAdd(grp, grpstep);
+			session.getMapper(cls).grpStepAdd(board_grp, board_grpstep);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -151,7 +145,6 @@ public class BoardDao {
 	
 	public boolean update(Board board) { 
 		SqlSession session = MyBatisConnection.getConnection();
- 		//String sql ="update  board set name=?,subject=?,content=?,file1=? where num=?"; 
  		try { 
  			session.getMapper(cls).update(board);
  			return true;  //boolean이라서
@@ -162,11 +155,10 @@ public class BoardDao {
  		} return false; 
  	} 
 	 
- 	public boolean delete(int num) { 
+ 	public boolean delete(int board_no) { 
  		SqlSession session = MyBatisConnection.getConnection();
- 		//String sql ="delete from board where num=?"; 
  		try { 
- 			session.getMapper(cls).delete(num);
+ 			session.getMapper(cls).delete(board_no);
  			return true; 
  		} catch (Exception e) { 
  			e.printStackTrace(); 
@@ -174,7 +166,45 @@ public class BoardDao {
  			MyBatisConnection.close(session);
  		} 
  		return false; 
- 	} 
-
+ 	}
+ 	
+ 	// 코멘트 조회하는 메서드
+	public List <Boardcomment> selectComment(int board_no) { //여기의 board_no은 db의 board_no
+		SqlSession session = MyBatisConnection.getConnection();
+		try {
+			return session.getMapper(cls).selectcm(board_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MyBatisConnection.close(session);
+		}
+		return null;
+	}
 	
+	// 게시물의 코멘트중 최대 번호 찾는 method
+		public int maxnumofCmt() {
+			SqlSession session = MyBatisConnection.getConnection();
+			try {
+					return session.getMapper(cls).maxnumofCmt();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				MyBatisConnection.close(session);
+			}
+			return 0;
+		}
+		
+		//코멘트를 등록하는 method
+		public boolean insertComment(Boardcomment c) {
+			  SqlSession session = MyBatisConnection.getConnection();
+			  try {
+				  session.getMapper(cls).insertComment(c);
+				  return true;
+			  } catch (Exception e) {
+			   e.printStackTrace();
+			  }finally {
+				  MyBatisConnection.close(session);
+			  }
+			  return false;
+			 }
 }
