@@ -27,7 +27,7 @@ public class ClinicaltrialmainAction extends UserLoginAction {
 		ClinicaltrialDao dao = new ClinicaltrialDao();
 		//list : [{name:'홍길동',cnt:9},{name:'111',cnt:3}] map collection을 list collection이 가지고 있는 형태
 		List<Map<String,Integer>> list2 = dao.graph1();
-		System.out.println(list2);
+		//System.out.println(list2);
 		StringBuilder json = new StringBuilder("[");
 		int i = 0;
 		for(Map<String, Integer> m : list2) {
@@ -36,9 +36,10 @@ public class ClinicaltrialmainAction extends UserLoginAction {
 				if(me.getKey().equals("cnt")) json.append("\"cnt\":"+me.getValue()+"}");
 			}//Map.entry
 			i++;
-			if(i<list.size()-1) json.append(",");
+			if(i<list2.size()) json.append(",");
 		}//for
 		json.append("]");
+		System.out.println(json);
 		request.setAttribute("json", json.toString().trim() );
 		
 		return new ActionForward();

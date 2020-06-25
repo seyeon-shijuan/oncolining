@@ -128,7 +128,7 @@ action.properties에
 		            	        //여기서 cnt 값을 다 더하는 방법? 지금은 1나오는데..
 		            	      });
 		            	      var percentage = parseFloat((currentValue/total*100).toFixed(1));
-		            	      return currentValue + ' (' + total + '%)';
+		            	      return currentValue + ' (' + percentage + '%)';
 		            	    },
 		            	    title: function(tooltipItem, data) {
 		            	      return data.datasets[tooltipItem[0].datasetIndex].label;
