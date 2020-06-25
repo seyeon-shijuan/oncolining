@@ -40,12 +40,17 @@ function inputcheck(){
 <!-- 여기서 말하는 f는 document.f; in the 10th line  -->
 <table>
 <caption>게시판 글쓰기</caption>
-<tr><td>글쓴이</td><td><input type="text" name="mem_id"></td></tr>
+<tr><td>글쓴이</td><td><input type="text" name="mem_id" value="${sessionScope.login}" readonly></td></tr>
 <tr><td>제목</td><td><input type="text" name="board_subject"></td></tr>
 <tr><td>내용</td><td><textarea rows="15" name="board_content" id="content1"></textarea></td></tr>
 <script>CKEDITOR.replace("content1",{filebrowserImageUploadUrl : "imgupload.do"});</script>
 <tr><td>첨부파일</td><td><input type="file" name="board_file"></td></tr>
-<tr><td colspan="2"><a href="javascript:inputcheck()">[게시물등록]</a></td></tr>
+<tr>
+	<td colspan="2">
+		<a href="javascript:inputcheck()" style="margin-right: 10px;">게시물등록</a>
+		<a href="#" onClick="history.back()" style="margin-left: 10px;">돌아가기</a>
+	</td>
+</tr>
 <!-- a태그는 form과 상관이 없다.-->
 
 </table>

@@ -86,7 +86,7 @@ action.properties에
 				alert("서버 오류: " + e.status);
 			}//error
 		})//ajax
-	}//graphs
+	}//piegraph1
 	
 	function pieGraphPrint(data){
 		console.log(data)
@@ -207,11 +207,11 @@ action.properties에
 		 <!-- /main contents -->
 		<br>
 		
-		<div class="two-divs" style="width:57%; height:200px; padding: 1%; border: 2px solid lightgray; float:left;">
+		<div class="two-divs" style="width:57%; height:200px; padding: 1%; border: none; float:left;">
 			<button type="button" onclick="location.href='../clinicaltrial/ctdataForm.me' " class="btn_group">임상 입력</button>
 			<button type="button" onclick="location.href='../clinicaltrial/myclinicaltrial.me' " class="btn_group">내 임상 보기</button>
 		</div>
-		<div class="two-divs" style="width: 40%; height: 200px; margin-left: 3%; padding: 1%;  border: 2px solid lightgray; float:left;">
+		<div class="two-divs" style="width: 40%; height: 200px; margin-left: 3%; padding: 1%;  border: none; float:left;">
 		</div>
 		
 		

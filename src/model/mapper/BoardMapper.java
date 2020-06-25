@@ -40,8 +40,13 @@ public interface BoardMapper {
 		"</script>"})
 	List<Board> select(Map<String,Object> map);
 	
+	//해당 게시글의 전체 코멘트 선택
 	@Select("select * from board_comment where board_no=#{board_no}")
 	List <Boardcomment> selectcm(int board_no);
+	
+	//코멘트 선택 (1)
+	@Select("select * from board_comment where cm_no=#{num}")
+	Boardcomment selectcmOne(int num);
 	
 	@Update("update board set board_readcnt = board_readcnt + 1 where board_no = #{board_no}")
 	void readcntAdd(@Param("board_no") int board_no);
@@ -54,6 +59,9 @@ public interface BoardMapper {
 
 	@Delete("delete from board where board_no=#{board_no}")
 	void delete(@Param("board_no") int board_no);
+	
+	@Delete("delete from board_comment where cm_no=#{num}")
+	void deletecomment(@Param("num") int num);
 
 	@Select("select ifnull(max(cm_no),0) from board_comment")
 	int maxnumofCmt();

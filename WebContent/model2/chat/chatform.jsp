@@ -21,8 +21,8 @@
 		<div class="inner_frame">
 			<p>임상 채팅</p>
 				<div style="width:100%;">
-				<textarea rows="10" cols="50" readonly="readonly" id="messageWindow" style="width:80%;"></textarea><br>
-				<input id="inputMessage" type="text" style="width: 80%;" onkeydown="keyin()">
+				<textarea rows="10" cols="50" readonly="readonly" id="messageWindow" style="width:80%; background-color: #FAFAFA; border:none;"></textarea><br>
+				<input id="inputMessage" type="text" style="width: 76%;" onkeydown="keyin()">
 				<input type="button" value="전송" onclick="send()">
 				<!-- keyin은 키를 눌렀을 때,
 				event keyCode가 13=>엔터키 엔터누르면 send method call -->

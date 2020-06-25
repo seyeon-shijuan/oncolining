@@ -149,6 +149,10 @@
 								    <img src="../../img/pink.png" style="width: 40px; margin-right: 0.5%;">
 								    <a class="author">${c.mem_id}</a>
 								    <span class="date">${c.cm_regdate}</span>
+								    <c:if test="${sessionScope.login eq c.mem_id}">
+									    <a href="cmdeleteForm.me?num=${c.cm_no}"
+									    onclick="window.open(this.href,'_blank','width=460, height=150'); return false;">ªË¡¶</a>
+								    </c:if>
 								    <div class="comment_content">
 								   		<h5 style="font-weight: bold; font-size: large; font-style:italic;">"${c.cm_title}"</h5>
 								  		 ${c.cm_content}

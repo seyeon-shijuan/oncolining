@@ -276,6 +276,33 @@ public class BoardAllAction {
 		return new ActionForward(false, "../alert.jsp");
 	}
 
+	//코멘트 지우는 함수
+	public ActionForward deletecomment(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		request.setCharacterEncoding("euc-kr");
+		int num = Integer.parseInt(request.getParameter("num"));
+		String msg = "코멘트가 삭제되지 않았습니다.";
+		String url = "";
+		List<Boardcomment> b  = dao.selectComment(num);
+		if (b == null) {
+			msg = "잘못된 경로입니다.";
+			url = "";
+		} else {
+			//if (pass.equals(board.getPass())) {
+				if (dao.deleteComment(num)) {
+					msg = "코멘트 삭제 성공";
+					url = "";
+				} else {
+					msg = "코멘트 삭제 실패";
+					url = "info.do?num=" + num;
+				}
+			//}
+		} // else
+		request.setAttribute("msg", msg);
+		request.setAttribute("url", url);
+		return new ActionForward(false, "../alert2.jsp");
+	}
+	
+	
 	public ActionForward imgupload(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String path = request.getServletContext().getRealPath("/") + "model2/board/imgfile/";
 		File f = new File(path);

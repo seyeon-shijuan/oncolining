@@ -8,17 +8,27 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
  <%@ taglib prefix ="c" uri ="http://java.sun.com/jsp/jstl/core" %>
- 
+ <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title>구충제 항암 관련 논문</title>
 <link rel="stylesheet" href="../../css/smallbutton.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style type="text/css">
-	table,td,th {border : 1px dotted gray; border-collapse : collapse;}
-	th{background-color: #CECECE;}
+ table{
+		margin-left: auto;
+		margin-right: auto;
+		align-content: center;
+		width: 1000px;
+		}
+	table,td,th {border : 1px solid #CECECE; border-collapse : collapse; max-width: 75%; }
+	th{background-color: #FAFAFA; text-align: center;}
+	td{text-align: left; padding: 1%;}
 	.inner_frame {text-align: center; margin-top: 2%;}
+	.person_table {margin : auto; padding: 50px}
+	.search_bar {padding: 3%; margin: 2%;}
 </style>
 </head>
 <body>
@@ -27,8 +37,34 @@
 		<button  class="small_button_on"  onclick="location.href='../scrap/paper.jsp'">&nbsp;&nbsp;학술 논문&nbsp;&nbsp;</button>
 		<button  class="small_button_off"  onclick="location.href='../scrap/scrap.jsp'">&nbsp;&nbsp;사이트 링크&nbsp;&nbsp;</button>
 		<div class="inner_frame">
+			
+			<script type="text/javascript">
+				
+				function pubmed(){
+					location.href="../ajax/pubmed.me?website="+$("#website option:selected").val()+"&keyword="+
+							encodeURI(encodeURIComponent($("#keyword").val()))
+				}//pubmed
+				
+			</script>
+			
+			<div class="search_bar">
+				<form action="../ajax/pubmed.me"  method="post" name="f">
+					<select id="website" name="website" style="height: 25px;">
+			  	 	 <option value="1" selected="selected">Pubmed</option>
+			  		  <option value="2">Google Scholar</option>
+					</select>
+					<input type="text" id="keyword" name="keyword">
+					<input type="button" onclick="pubmed()" value="검색">
+					<input type="submit" value="submit">
+				</form>
+			</div>
+			
+			<div class="result_section">
+			</div>
+			
 			<%
 				String url ="https://pubmed.ncbi.nlm.nih.gov/?term=albendazole+anticancer";
+				String url2="https://pubmed.ncbi.nlm.nih.gov/?term=albendazole+anticancer";
 				String line = "";
 				Document doc = null;
 				List<String> list = new ArrayList<String>();
@@ -39,7 +75,7 @@
 					Elements e1 = doc.select(".labs-full-docsum"); //class 속성이 rso인 모든 태그를 가져오기
 					for(Element ele : e1){
 						list.add(ele.html());
-						out.print(ele.html());
+						//out.print(ele.html());
 					}//for
 		
 				} catch(IOException e ){
@@ -72,7 +108,7 @@
 		th BbeB2d
 		이미지
 		 -->
-		</div> <!-- inner div -->
-	</div><!-- outer div -->
+		</div> <!-- inner frame div-->
+	</div><!-- outer frame div -->
 </body>
 </html>

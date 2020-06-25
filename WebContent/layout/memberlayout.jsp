@@ -70,14 +70,14 @@ a:visited{color:black; text-decoration: none;}
 	 		<div class="two_divs">
 		 		<ul>
 			    <div class="logo">
-			     <a href="../member/main.me">
+			     <a href="../member/main.jsp">
 			      <img src="../../img/small_logo.JPG"/>
 			     </a>
 		   	 </div> <!-- logo -->
 	 		</div>
 	 		<div class="two_divs">
 		    <li class="tab"> 
-		      <a href="../member/main.me?id=${sessionScope.login}" class="123">소개</a>
+		      <a href="../member/main.jsp" class="123">소개</a>
 		     </li>
 		     <li class="tab">
 		      <a href="../clinicaltrial/clinicaltrialmain.me" class="123">임상시험</a>

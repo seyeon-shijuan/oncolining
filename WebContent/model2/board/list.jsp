@@ -50,7 +50,6 @@ caption {margin: 0 0 20px 0}
 						<th width="11%">조회수</th><th width="11%">의견</th>
 					</tr>
 					<c:forEach var="b" items="${list}">
-						<!--  이게 뭘 한거지??-->
 						<tr>
 							<td>${boardnum}</td><c:set var="boardnum" value="${boardnum-1}"/>
 							<td style="text-align: left">

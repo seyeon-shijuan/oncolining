@@ -169,10 +169,10 @@ public class BoardDao {
  	}
  	
  	// 코멘트 조회하는 메서드
-	public List <Boardcomment> selectComment(int board_no) { //여기의 board_no은 db의 board_no
+	public List<Boardcomment> selectComment(int num) {
 		SqlSession session = MyBatisConnection.getConnection();
 		try {
-			return session.getMapper(cls).selectcm(board_no);
+			return session.getMapper(cls).selectcm(num);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -207,4 +207,19 @@ public class BoardDao {
 			  }
 			  return false;
 			 }
+		
+		//코멘트 지우는 함수
+		public boolean deleteComment(int num) {
+			SqlSession session = MyBatisConnection.getConnection();
+	 		try { 
+	 			session.getMapper(cls).deletecomment(num);
+	 			return true; 
+	 		} catch (Exception e) { 
+	 			e.printStackTrace(); 
+	 		} finally { 
+	 			MyBatisConnection.close(session);
+	 		} 
+			return false;
+		}
+
 }

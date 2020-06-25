@@ -17,6 +17,7 @@
       <pattern>/model2/member/password*</pattern>
       <pattern>/model2/clinicaltrial/ctdeleteForm*</pattern>
       <pattern>/model2/board/delete*</pattern>
+      <pattern>/model2/board/cmdelete*</pattern>
 
    </excludes>
 </decorators>

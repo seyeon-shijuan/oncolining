@@ -184,6 +184,7 @@ function win_upload(){
 				</table>
 				<input type="submit" value="회원가입" class="btn_group">
 				<br>
+				<button  onClick="history.go(-1)">돌아가기</button>
 				 </form>
 				<!-- /회원가입 항목 -->
 			</div>
