@@ -29,6 +29,7 @@
 	.inner_frame {text-align: center; margin-top: 2%;}
 	.person_table {margin : auto; padding: 50px}
 	.search_bar {padding: 3%; margin: 2%;}
+	.spantag {margin-bottom: 2%;}
 </style>
 </head>
 <body>
@@ -38,6 +39,21 @@
 		<button  class="small_button_off"  onclick="location.href='../scrap/scrap.jsp'">&nbsp;&nbsp;사이트 링크&nbsp;&nbsp;</button>
 		<div class="inner_frame">
 			
+			
+		<span class="spantag">
+			Pubmed Albendazole anticancer 관련 논문 목록
+			<br>
+			[&nbsp;
+			<script type="text/javascript">
+				var today = new Date();
+				document.write(today.toLocaleString());
+			</script>
+			&nbsp;기준 ]
+			<br><br><br>
+		</span>
+		
+		
+		<!--
 			<script type="text/javascript">
 				
 				function pubmed(){
@@ -61,7 +77,7 @@
 			
 			<div class="result_section">
 			</div>
-			
+			 -->
 			<%
 				String url ="https://pubmed.ncbi.nlm.nih.gov/?term=albendazole+anticancer";
 				String url2="https://pubmed.ncbi.nlm.nih.gov/?term=albendazole+anticancer";

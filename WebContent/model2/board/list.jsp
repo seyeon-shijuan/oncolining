@@ -26,6 +26,8 @@
 	}
 </script>
 <style>
+th {background-color: #E6E6E6;}
+td {background-color: #FAFAFA;}
 caption {margin: 0 0 20px 0}
 #pagechange{text-align:center;}
 .inner_frame {text-align: center; margin-top: 2%; padding: 0 4% 0 4%;}
@@ -43,11 +45,11 @@ caption {margin: 0 0 20px 0}
 				<c:choose><c:when test="${boardcount==0}"> <!-- ★등록된 게시물 없는경우 -->
 					<tr><td colspan="6">등록된 게시글이 없습니다.</td></tr>
 				</c:when><c:otherwise> <!-- ★등록된 게시물 있는경우 -->
-					<tr><td colspan="6" style="text-align:right">글 개수: ${boardcount}</td></tr>
+					<tr><td colspan="6" style="text-align:right; background-color: #FFFFFF;">글 개수: ${boardcount}</td></tr>
 					<tr>
-						<th width="4%">No.</th><th width="45%">토픽 제목</th>
-						<th width="12%">작성자</th><th width="17%">등록일</th>
-						<th width="11%">조회수</th><th width="11%">의견</th>
+						<th width="12%">No.</th><th width="45%">토픽 제목</th>
+						<th width="15%">작성자</th><th width="14%">등록일</th>
+						<th width="14%">조회수</th>
 					</tr>
 					<c:forEach var="b" items="${list}">
 						<tr>
@@ -87,9 +89,6 @@ caption {margin: 0 0 20px 0}
 								<c:if test="${today!=rdate}">
 									<fmt:formatDate value="${b.board_regdate}" pattern="yyyy-MM-dd"/>
 								</c:if>
-							</td>
-							<td>
-								${b.board_readcnt}
 							</td>
 							<td>
 								${b.board_readcnt}

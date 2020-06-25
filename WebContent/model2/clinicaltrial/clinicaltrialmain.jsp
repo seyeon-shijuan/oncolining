@@ -58,7 +58,9 @@ action.properties에
 	  -webkit-user-select: none;
 	  -ms-user-select: none;
 	 }
-	 
+	 .button_area {
+	 margin-bottom: 2%;
+	 }
 </style>
 <script type="text/javascript">
 
@@ -145,7 +147,7 @@ action.properties에
 	
 	
 	function bargraph1() {
-		alert("fbz을 누르셨습니다.");
+		//alert("fbz을 누르셨습니다.");
 		$.ajax("${path}/model2/ajax/graph2.me",{
 			success : function(data){
 				console.log(data);
