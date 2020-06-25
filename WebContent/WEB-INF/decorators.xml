@@ -18,6 +18,7 @@
       <pattern>/model2/clinicaltrial/ctdeleteForm*</pattern>
       <pattern>/model2/board/delete*</pattern>
       <pattern>/model2/board/cmdelete*</pattern>
-
+      <pattern>/model2/ajax/*</pattern>
+    
    </excludes>
 </decorators>

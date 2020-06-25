@@ -148,6 +148,7 @@ action.properties에
 		alert("fbz을 누르셨습니다.");
 		$.ajax("${path}/model2/ajax/graph2.me",{
 			success : function(data){
+				console.log(data);
 				barGraphPrint(data);
 			},//success
 			error : function(e){
@@ -191,7 +192,7 @@ action.properties에
 				legend : {display : false},
 				title : {
 		               display : true,
-		               text : '가장 최근부터 글이 등록된 7일',
+		               text : '펜벤다졸의 병종별 효과',
 		               position : 'top'
 		            },
 				scales:{
@@ -202,7 +203,7 @@ action.properties에
 					yAxes:[{
 						display : true,
 						stacked : true,
-						scaleLabel : { display: true, labelString:"게시물 작성 건수"},
+						scaleLabel : { display: true, labelString:"혈액검사 수치 감소 건수"},
 						// y축 눈금에서 소수점 제거
 						ticks: {
 			                 beginAtZero: true,

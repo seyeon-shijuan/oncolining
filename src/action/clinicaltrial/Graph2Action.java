@@ -27,20 +27,31 @@ public class Graph2Action extends UserLoginAction {
 		ClinicaltrialDao dao = new ClinicaltrialDao();
 		//list : [{name:'홍길동',cnt:9},{name:'111',cnt:3}] map collection을 list collection이 가지고 있는 형태
 		List<Map<String,Integer>> list2 = dao.graph2();
+		//System.out.println("=========Graph2Action.java=========");
 		//System.out.println(list2);
+		//System.out.println("=========/Graph2Action.java=========");
 		StringBuilder json = new StringBuilder("[");
 		int i = 0;
+		String a = null;
 		for(Map<String, Integer> m : list2) {
 			for(Map.Entry<String, Integer> me : m.entrySet() ) {
-				if(me.getKey().equals("mem_diagnosis")) json.append("{\"mem_diagnosis\":\""+me.getValue()+"\",");
-				if(me.getKey().equals("cnt")) json.append("\"cnt\":"+me.getValue()+"}");
+				if(me.getKey().equals("cnt")) a="\"cnt\":"+me.getValue()+"},";
+				if(me.getKey().equals("mem_diagnosis")) {json.append("{\"mem_diagnosis\":\""+me.getValue()+"\",");
+				json.append(a);
+				}
+				
 			}//Map.entry
 			i++;
-			if(i<list2.size()) json.append(",");
+			if(i<list2.size()-1) json.append(",");
+			
 		}//for
-		json.append("]");
+		
+		String json2=json.substring(0, json.length() - 1);
+		json.delete(0,json.length());
+		json.append(json2+"]");
 		System.out.println(json);
 		request.setAttribute("json", json.toString().trim() );
+		System.out.println(json.toString().trim());
 		
 		return new ActionForward();
 	}
