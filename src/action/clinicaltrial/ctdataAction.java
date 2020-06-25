@@ -28,7 +28,7 @@ public class ctdataAction implements Action {
 		String[] value = request.getParameterValues("ct_medicine");
 		String value2="";
 		for(int i=0; i<value.length; i++) {
-			if(i !=0) value2 += ", ";
+			if(i !=0) value2 += " - ";
 			value2 += value[i];
 		}
 		
@@ -36,7 +36,7 @@ public class ctdataAction implements Action {
 		String[] value3 = request.getParameterValues("ct_treatment");
 		String value4="";
 		for(int i=0; i<value3.length; i++) {
-			if(i !=0) value4 += ", ";
+			if(i !=0) value4 += " - ";
 			value4 += value3[i];
 		}
 		
