@@ -87,13 +87,20 @@
 				try {
 					//doc = Jsoup.connect(url).get();
 					doc = Jsoup.connect(url).userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36").get();
-		
-					Elements e1 = doc.select(".labs-full-docsum"); //class 속성이 rso인 모든 태그를 가져오기
+					// labs-docsum-title
+					Elements e1 = doc.select(".docsum-content"); //class 속성이 rso인 모든 태그를 가져오기
 					for(Element ele : e1){
-						list.add(ele.html());
+						//list.add(ele.html());
 						//out.print(ele.html());
+			            String temp = ele.html();
+			            // a href 재구성
+			            temp = temp.replaceAll("href=\"", "href=\"https://pubmed.ncbi.nlm.nih.gov");
+			            //line+=temp;
+			            //System.out.println(temp);
+			            list.add(temp);
+			            //System.out.println(ele.html());
 					}//for
-		
+				
 				} catch(IOException e ){
 					e.printStackTrace();
 				}

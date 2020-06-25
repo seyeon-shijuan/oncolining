@@ -290,7 +290,7 @@ public class BoardAllAction {
 			//if (pass.equals(board.getPass())) {
 				if (dao.deleteComment(num)) {
 					msg = "코멘트 삭제 성공";
-					url = "";
+					url = "list.do";
 				} else {
 					msg = "코멘트 삭제 실패";
 					url = "info.do?num=" + num;
