@@ -109,7 +109,23 @@ public class ClinicaltrialDao {
 			}
 			return list;
 		}
-
+		
+		//두 번째 막대 그래프 차트 부르는 함수
+		public List<Map<String, Integer>> graph2() {
+			// TODO Auto-generated method stub
+			SqlSession session = MyBatisConnection.getConnection();
+			List<Map<String, Integer>> list = null;
+			try {
+				list = session.getMapper(cls).graph2();
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			} finally {
+				MyBatisConnection.close(session);
+			}
+			return list;
+		}
+		
 
 		public boolean delete(int ct_datano) {
 			SqlSession session = MyBatisConnection.getConnection();

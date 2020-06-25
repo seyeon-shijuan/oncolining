@@ -73,6 +73,10 @@ public interface ClinicaltrialMapper {
 	@Select("select ct_medicine, count(*) cnt from clinicaltrial WHERE mem_id NOT IN('admin','doc1') group by ct_medicine having COUNT(*)>0 order by cnt DESC")
 	//list : [{ct_medicine:'albendazole',cnt:9},{ct_medicine:'fenbendazole',cnt:3}] map collection을 list collection이 가지고 있는 형태
 	List<Map<String, Integer>> graph1();
+	
+	@Select("SELECT m.mem_diagnosis, count(c.ct_blood_test) cnt from clinicaltrial c LEFT JOIN member m ON c.mem_id = m.mem_id WHERE c.mem_id <> 'admin'AND ct_medicine LIKE \"%Fenbendazole%\" AND c.ct_blood_test LIKE '%감소했음%' GROUP BY m.mem_diagnosis")
+	//list : [{mem_diagnosis:'대장암',cnt:2},{mem_diagnosis:'혈액암',cnt:1}] map collection을 list collection이 가지고 있는 형태
+	List<Map<String, Integer>> graph2();
 
 	//@Delete("DELETE FROM member WHERE mem_id=#{mem_id}")
 	//int delete(@Param("mem_id") String mem_id);

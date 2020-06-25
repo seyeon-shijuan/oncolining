@@ -23,7 +23,7 @@ action.properties에
 <title>임상시험</title>
 <script type="text/javascript" src="http://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
+<link rel="stylesheet" href="../../css/smallbutton.css">
 <style>
 .main_contents {margin : auto; /*padding: 50px;*/}
 .inner_frame {text-align: center;}
@@ -142,7 +142,86 @@ action.properties에
 		var ctx = document.getElementById("canvas1").getContext("2d");
 		new Chart(ctx,config);
 	}//pieGraphPrint
-
+	
+	
+	function bargraph1() {
+		alert("fbz을 누르셨습니다.");
+		$.ajax("${path}/model2/ajax/graph2.me",{
+			success : function(data){
+				barGraphPrint(data);
+			},//success
+			error : function(e){
+				alert("서버 오류: " + e.status);
+			}//error
+		})//ajax
+	}
+	
+	function barGraphPrint(data){
+		console.log(data)
+		var rows = JSON.parse(data);
+		var diagnosis = []
+		var datas = []
+		var colors = []
+		$.each(rows,function(index,item){
+			diagnosis[index] = item.mem_diagnosis;
+			datas[index] = item.cnt;
+			colors[index] = randomColor(1);
+		})//each
+		var chartData = {
+			labels : diagnosis,
+			datasets : [{
+				type : 'line',
+				borderWidth : 2,
+				borderColor : colors,
+				label : '건수',
+				fill : false,
+				data : datas
+			},{
+				type : 'bar',
+				label : '건수',
+				backgroundColor : colors,
+				data : datas
+			}]//datasets
+		}//chartData : 데이터에 해당
+		var config = {
+			type : 'bar', //데이터 셋에도 표시하고, 환경설정에도 표시해야 한다.
+			data : chartData, // 위에 chartData를 만든 것을 한번에 이 칸에 넣는다.
+			options : {
+				responsive : true,
+				legend : {display : false},
+				title : {
+		               display : true,
+		               text : '가장 최근부터 글이 등록된 7일',
+		               position : 'top'
+		            },
+				scales:{
+					xAxes: [{
+						display : true,
+						stacked : true
+					}],//xAxes
+					yAxes:[{
+						display : true,
+						stacked : true,
+						scaleLabel : { display: true, labelString:"게시물 작성 건수"},
+						// y축 눈금에서 소수점 제거
+						ticks: {
+			                 beginAtZero: true,
+			                 userCallback: function(label, index, labels) {
+			                     // when the floored value is the same as the value we have a whole number
+			                     if (Math.floor(label) === label) {
+			                         return label;
+			                     }
+			                 }
+			             }
+					}]//yAxes
+				}//scales
+			}//options
+			
+		}//config
+		var ctx = document.getElementById("canvas1").getContext("2d");
+		new Chart(ctx,config);
+	}//barGraphPrint
+	
 </script>
 </head>
 <body>
@@ -197,6 +276,10 @@ action.properties에
 			<!--chart section  -->
 			
 				<div class="two-divs" style="width: 40%; height: 600px; margin-left: 3%;  padding: 1%; background-color:#F2F2F2; float:left;">
+					<div class="button_area">
+						<button  class="small_button_on" onclick="location.href='../clinicaltrial/clinicaltrialmain.me'">복약유형</button>
+						<button  class="small_button_on" onclick="bargraph1();">Fbz 효과 병종</button>
+					</div>
 					<div id="boardcontainer" style="background-color: white; height: 400px;">
 					<canvas id="canvas1" style="border: none; height: 380px;"></canvas>				
 				</div>
