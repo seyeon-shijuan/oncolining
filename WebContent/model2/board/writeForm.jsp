@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>게시판 글쓰기</title>
+<title>임상토픽 작성</title>
 <link rel="stylesheet" href="../../css/main.css">
 <script type="text/javascript">
 function inputcheck(){
@@ -39,15 +39,15 @@ function inputcheck(){
 <form action="write.do" method="post" enctype="multipart/form-data" name="f">
 <!-- 여기서 말하는 f는 document.f; in the 10th line  -->
 <table>
-<caption>게시판 글쓰기</caption>
+<caption>임상토픽 쓰기</caption>
 <tr><td>글쓴이</td><td><input type="text" name="mem_id" value="${sessionScope.login}" readonly></td></tr>
-<tr><td>제목</td><td><input type="text" name="board_subject"></td></tr>
+<tr><td>토픽 제목</td><td><input type="text" name="board_subject"></td></tr>
 <tr><td>내용</td><td><textarea rows="15" name="board_content" id="content1"></textarea></td></tr>
 <script>CKEDITOR.replace("content1",{filebrowserImageUploadUrl : "imgupload.do"});</script>
 <tr><td>첨부파일</td><td><input type="file" name="board_file"></td></tr>
 <tr>
 	<td colspan="2">
-		<a href="javascript:inputcheck()" style="margin-right: 10px;">게시물등록</a>
+		<a href="javascript:inputcheck()" style="margin-right: 10px;">토픽등록</a>
 		<a href="#" onClick="history.back()" style="margin-left: 10px;">돌아가기</a>
 	</td>
 </tr>

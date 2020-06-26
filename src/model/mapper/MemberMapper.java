@@ -26,7 +26,7 @@ public interface MemberMapper {
 	
 	@Select("select mem_id from member where mem_name = #{mem_name} and mem_dateofbirth=#{mem_dateofbirth}")
 	String idSearch(@Param("mem_name") String mem_name, @Param("mem_dateofbirth") String mem_dateofbirth);
-
+	
 	@Select("select pass from member where mem_id =#{mem_id}  and mem_name = #{mem_name} and mem_dateofbirth = #{mem_dateofbirth}")
 	String pwSearch(@Param("mem_id") String id, @Param("mem_name") String mem_name, @Param("mem_dateofbirth") String mem_dateofbirth);
 

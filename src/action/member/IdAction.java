@@ -11,9 +11,9 @@ public class IdAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		  String email = request.getParameter("email");
-		  String tel = request.getParameter("tel");
-		  String id = new MemberDao().idSearch(email,tel);
+		  String mem_name = request.getParameter("mem_name");
+		  String mem_dateofbirth = request.getParameter("mem_dateofbirth");
+		  String id = new MemberDao().idSearch(mem_name,mem_dateofbirth);
 		  String star="";
 		  if(!id.equals("없습니다.")){
 		   for(int i=0;i<id.length()-((id.length()+1)/2);i++){

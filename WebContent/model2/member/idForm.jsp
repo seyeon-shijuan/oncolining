@@ -11,8 +11,8 @@
  <h3>아이디찾기</h3> 
  <form action="id.me" method="post" name="f">
    <table> 
-      <tr><th>이메일</th><td><input type="text" name="email"></td></tr> 
-      <tr><th>전화번호</th><td><input type="text" name="tel"></td></tr> 
+      <tr><th>이름</th><td><input type="text" name="mem_name"></td></tr> 
+      <tr><th>생년월일</th><td><input type="text" name="mem_dateofbirth"></td></tr> 
       <tr><td colspan="2"><input type="submit" value="아이디찾기"></td></tr> 
    </table>	 
  </form></body></html> 
